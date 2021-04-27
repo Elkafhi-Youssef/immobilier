@@ -9,6 +9,14 @@
     function __construct(){
 
     }
+    
+    /**
+     * Instantiate model
+     * 
+     * @param string $model
+     * @return void
+     * 
+     */
 
     public function getModelInstance($model){
       // --
@@ -16,6 +24,14 @@
       $this->modelInstance = new $model();
       // --
     }
+
+    /**
+     * Load view
+     * 
+     * @param string $viewName
+     * @param array $data : data comes from db or submted by user
+     * 
+     */
 
     public function loadView($viewName,$data = []){
       // --
