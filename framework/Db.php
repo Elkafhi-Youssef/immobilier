@@ -1,19 +1,28 @@
 <?php
 
     /**
+	 * 
      * class : Db 
      * core class to hundel database
      * 
      */
 
-    class Db{
+    class  Db{
 
 		private $host_name = DB_HOST;
 		private $user_name = DB_USER;
 		private $passwd = DB_PASSWD;
 		private $db_name = DB_NAME;
 		private $pdo;
-			
+		private $sth;
+		
+		/**
+		 * 
+		 * Constructor
+		 * @return null
+		 * 
+		 */
+
 		function __construct(){
 			try{
 				$this->pdo = new PDO("mysql:host=$this->host_name;dbname=$this->db_name",$this->user_name,$this->passwd);
@@ -21,8 +30,60 @@
 				die($exp->getMessage());
 			}
 			echo "-> Db class instantiated...";
-
 		}
-	
+
+		/**
+		 * 
+		 * Prepare query and asign it to $sth property
+		 * 
+		 * @param array
+		 * @return void
+		 * 
+		 */
+		
+		public function prepareQuery($query){
+			$this->sth = $this->pdo->prepare($query);
+		}	
+
+		/**
+		 * 
+		 * Bind given values 
+		 * 
+		 * @param array $values to be bind
+		 * @return void
+		 * 
+		 */
+
+		public function bindValues($values = []){
+			for ($i=1; $i < count($values); $i++) { 
+				$this->sth->bindValue($i,$values[$i]);
+			}
+			$this->sth->execute();
+		}
+
+		/**
+		 * 
+		 * Get result 
+		 * 
+		 * @param integer  PDO::FETCH_ASSOC | PDO::FETCH_OBJ | PDO::FETCH_COLUMN | ...
+		 * @return object|array| ... depending on the given param
+		 * 
+		 */
+
+		public function getResult($type = PDO::FETCH_OBJ){
+			return $this->sth->fetchAll($type);
+		}
+
+		/**
+		 * 
+		 * Get one row
+		 *
+		 * @return object
+		 * 
+		 */
+
+		public function getRow(){
+			return $this->fetch(PDO::FETCH_OBJ);
+		}
 	}
 	
