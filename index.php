@@ -11,8 +11,9 @@
     try {
       require_once FRAMEWK_PATH.DS.$className.'.php';
     } catch (Exception $e) {
-      die($e->getMessage);
+      die($e->getMessage());
     }
   });
 
   new Core();
+  new Db();
