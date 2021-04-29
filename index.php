@@ -16,4 +16,10 @@
   });
 
   new Core();
-  new Db();
+  $bd = new Db();
+  $bd->prepareQuery("select * from books where category like ? and author like ?");
+  $bd->bindValues(['','programming','g.ayoub']);
+  $res = $bd->getResult(PDO::FETCH_ASSOC);
+  echo '<pre>';
+  print_r($res);
+
