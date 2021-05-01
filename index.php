@@ -15,11 +15,14 @@
     }
   });
 
+  /**
+   * 
+   * Instantiate core class
+   * 
+   */
   new Core();
-  $bd = new Db();
-  $bd->prepareQuery("select * from books where category like ? and author like ?");
-  $bd->bindValues(['','programming','g.ayoub']);
-  $res = $bd->getResult(PDO::FETCH_ASSOC);
-  echo '<pre>';
-  print_r($res);
+  #$db = new Db();
+  #$db->prepareQuery('insert into books values(null,?,?,?)');
+  #$db->bindValues(['','React gost','ayman ramadan','fEnd']);
+  
 

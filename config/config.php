@@ -5,7 +5,7 @@
    * needed to start the application
    * =======================================*/
 
-   // ROOT
+   // ROOT Directory
    define('ROOT', getcwd());
    // Application path
    define('APPLICATION_PATH', ROOT.DS.'application');
@@ -21,3 +21,7 @@
    define('DB_USER','root');
    define('DB_HOST','127.0.0.1');
    define('DB_PASSWD','');
+
+   // URL ROOT
+   define('URLROOT', 'http://127.0.0.1/gbests');
+   

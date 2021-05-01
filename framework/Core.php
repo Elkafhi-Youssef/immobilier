@@ -42,7 +42,13 @@ class Core{
 
   }
 
-  // get the url
+  /**
+   * 
+   * Get the url the requested url
+   * @return array 
+   * 
+   */
+  
   public function getRequestedUrl(){
     return isset($_SERVER['PATH_INFO']) ? explode('/',trim($_SERVER['PATH_INFO'],'/')) : ['home','index'];
   }

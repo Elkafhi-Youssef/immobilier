@@ -5,7 +5,7 @@
    */
   class Controller{
 
-    protected $modelInstance;
+    protected $modelInstance = null;
     function __construct(){
 
     }
@@ -18,18 +18,16 @@
      * 
      */
 
-    public function getModelInstance($model){
-      // --
-      require_once APPLICATION_PATH.DS.'models'.DS.$model.'.php';
+    public function setModelInstance($model){
+      require_once APPLICATION_PATH.DS.'models'.DS.ucwords($model).'.php';
       $this->modelInstance = new $model();
-      // --
     }
 
     /**
      * Load view
      * 
-     * @param string $viewName
-     * @param array $data : data comes from db or submted by user
+     * @param string $viewName [almost a string like 'books/addbook' where books is a folder]
+     * @param array $data : data comes from db
      * 
      */
 
