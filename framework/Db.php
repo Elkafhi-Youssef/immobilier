@@ -49,19 +49,25 @@
 		 * 
 		 * Bind given values and execute
 		 * 
-		 * @param array $values to be bind
+		 * @param array $values to bind
 		 * @return void
 		 * 
 		 */
 
 		public function bindValues($values = []){
-
 			$num_params = count($values);
-
 			for ($i=0; $i < $num_params; $i++) { 
-				echo $values[$i];
 				$this->sth->bindValue($i+1,$values[$i]);
 			}
+		}
+
+		/**
+		 * Execute 
+		 * @param array
+		 */
+
+		public function execute($values){
+			$this->bindValues($values);
 			$this->sth->execute();
 		}
 
@@ -81,7 +87,6 @@
 		/**
 		 * 
 		 * Get one row
-		 *
 		 * @return object
 		 * 
 		 */
@@ -89,5 +94,16 @@
 		public function getRow(){
 			return $this->fetch(PDO::FETCH_OBJ);
 		}
+
+		/**
+		 * get numbre of rows
+		 * @return integer
+		 */
+		
+		public function getNumRows(){
+			return $this->sth->rowCount();
+		}
+
+		
 	}
 	
