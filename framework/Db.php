@@ -47,7 +47,7 @@
 
 		/**
 		 * 
-		 * Bind given values 
+		 * Bind given values and execute
 		 * 
 		 * @param array $values to be bind
 		 * @return void
@@ -55,8 +55,12 @@
 		 */
 
 		public function bindValues($values = []){
-			for ($i=1; $i < count($values); $i++) { 
-				$this->sth->bindValue($i,$values[$i]);
+
+			$num_params = count($values);
+
+			for ($i=0; $i < $num_params; $i++) { 
+				echo $values[$i];
+				$this->sth->bindValue($i+1,$values[$i]);
 			}
 			$this->sth->execute();
 		}
