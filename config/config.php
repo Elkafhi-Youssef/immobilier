@@ -16,6 +16,10 @@
    // Public path
    define('PUBLIC_PATH', ROOT.DS.'public');
 
+   // Sub directories
+   define('VIEWS_PATH', APPLICATION_PATH.DS.'views');
+   
+
    // Database params
    define('DB_NAME','test');
    define('DB_USER','root');
