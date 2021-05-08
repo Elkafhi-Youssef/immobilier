@@ -24,5 +24,3 @@
   #$db = new Db();
   #$db->prepareQuery('insert into books values(null,?,?,?)');
   #$db->bindValues(['','React gost','ayman ramadan','fEnd']);
-  
-

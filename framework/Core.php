@@ -11,7 +11,6 @@ class Core{
   protected $params = [];
 
   function __construct(){
-    echo "-> Core class intantiated...<br>";
     $url = $this->getRequestedUrl();
 
     // Check for the requested controller if exists

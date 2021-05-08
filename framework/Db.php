@@ -29,7 +29,6 @@
 			}catch(PDOExeption $exp){
 				die($exp->getMessage());
 			}
-			echo "-> Db class instantiated...";
 		}
 
 		/**
@@ -66,7 +65,7 @@
 		 * @param array
 		 */
 
-		public function execute($values){
+		public function execute($values = []){
 			$this->bindValues($values);
 			$this->sth->execute();
 		}
