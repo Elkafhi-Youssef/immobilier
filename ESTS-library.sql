@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 03, 2021 at 07:05 PM
+-- Generation Time: May 08, 2021 at 02:25 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -59,7 +59,8 @@ CREATE TABLE `borrow` (
   `student_id` varchar(255) NOT NULL,
   `empl_id` varchar(255) NOT NULL,
   `vacataire_id` varchar(255) NOT NULL,
-  `copy_id` varchar(255) NOT NULL
+  `copy_id` varchar(255) NOT NULL,
+  `duration_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,7 +93,7 @@ CREATE TABLE `copy` (
 
 CREATE TABLE `duration` (
   `duration_id` varchar(255) NOT NULL,
-  `max_duration` varchar(255) NOT NULL
+  `max_duration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -224,7 +225,8 @@ ALTER TABLE `borrow`
   ADD KEY `student_id` (`student_id`),
   ADD KEY `teacher_id` (`teacher_id`),
   ADD KEY `copy_id` (`copy_id`) USING BTREE,
-  ADD KEY `empl_id_2` (`empl_id`);
+  ADD KEY `empl_id_2` (`empl_id`),
+  ADD KEY `max_duration` (`duration_id`);
 
 --
 -- Indexes for table `category`
@@ -305,6 +307,7 @@ ALTER TABLE `write`
 --
 ALTER TABLE `borrow`
   ADD CONSTRAINT `FK_copy_id ` FOREIGN KEY (`copy_id`) REFERENCES `copy` (`copy_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_duration` FOREIGN KEY (`duration_id`) REFERENCES `duration` (`duration_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_empl_id ` FOREIGN KEY (`empl_id`) REFERENCES `employe` (`empl_id`),
   ADD CONSTRAINT `FK_student_id ` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -331,7 +334,7 @@ ALTER TABLE `order`
   ADD CONSTRAINT `FK_empl` FOREIGN KEY (`empl_id`) REFERENCES `employe` (`empl_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_vacataire` FOREIGN KEY (`vacat_id`) REFERENCES `vacataire` (`vacat_id`);
+  ADD CONSTRAINT `FK_vacataire` FOREIGN KEY (`vacat_id`) REFERENCES `vacataire` (`vacat_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `write`
