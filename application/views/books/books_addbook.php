@@ -10,7 +10,7 @@
 
                 <div class="container d-flex justify-content-center align-items-center mt-4">
                     <div>
-                        <p class="font-weight-bolder p-0 m-0 mr-3">Si l'ouvrage déja exist entrer le isbn : </p>
+                        <p class="font-weight-bolder p-0 m-0 mr-3">Si l'ouvrage déja existe entrer le isbn : </p>
                     </div>
                     <div>
                         <form class="form-inline navbar-search d-flex justify-content-between">

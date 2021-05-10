@@ -6,8 +6,8 @@
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
                     <div class="col-8">
-                        <a class="btn btn-primary" href="#" role="button">A donner <span class="badge badge-light badge-counter">11</span></a>
-                        <a class="ml-md-4 btn btn-primary" href="#" role="button">A rendre <span class="badge badge-light badge-counter">20</span></a>
+                        <a class="btn btn-primary" href="#" role="button">À donner <span class="badge badge-light badge-counter">11</span></a>
+                        <a class="ml-md-4 btn btn-primary" href="#" role="button">Á rendre <span class="badge badge-light badge-counter">20</span></a>
                         <a class="ml-md-4 btn btn-primary" href="#" role="button">En retard <span class="badge badge-light badge-counter">2</span></a>
                     </div>
                     <form class="col-4 form-inline navbar-search d-flex justify-content-between">
