@@ -1,7 +1,8 @@
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'aside.php'; ?>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'nav.php';?>
- <!-- Begin Page Content -->
- <div class="container">
+
+
+<div class="container">
                 <div class="mb-4">
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
@@ -9,7 +10,7 @@
                         <div class="row">
                             <div class="dropdown mr-1">
                                 <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    Categorie
+                                    Categorie<span>(info)</span>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                                     <a class="dropdown-item" href="<?= URLROOT.DS.'books'.DS.'getCate' ?>">Info</a>
@@ -53,7 +54,9 @@
                     <!-- DataTales Example -->
                 <div class="card- shadow- mb-4">
                    <div class="mx-auto border-primary" style="width: 15%;">
-                        <h2 class="text-dark text-nowrap  h2 pl-4">Les livres</h2>
+                        <h2 class="text-dark text-nowrap  h2 pl-4">Les livres
+                            <span>(info)</span>
+                        </h2>
                         <hr class="sidebar-divider bg-gradient-primary  my-0">
                    </div>
                         
@@ -124,4 +127,29 @@
                 
                   
             </div> 
+
+
+
+
+
+
+
+
+
+
+
+<!-- require footer -->
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'footer.php';?>
+
+
+
+
+
+
+
+
+
+
+
+
+

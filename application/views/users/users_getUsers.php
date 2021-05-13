@@ -1,24 +1,32 @@
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'aside.php'; ?>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'nav.php';?>
- <!-- Begin Page Content -->
- <div class="container">
+
+
+<!-- Begin Page Content -->
+<div class="container">
                 <div class="mb-4">
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
-                    <div class="col-8">
+                    <div class="col-7">
                         <div class="row">
                             <div class="dropdown mr-1">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    Categorie
+                                <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                    Etudiants
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item" href="<?= URLROOT.DS.'books'.DS.'getCate' ?>">Info</a>
-                                    <a class="dropdown-item" href="#">info1</a>
-                                    <a class="dropdown-item" href="#">info2</a>
+                                    <a class="dropdown-item" href="<?= URLROOT.DS.'users'.DS.'getStudentByDiv' ?>">GI</a>
+                                    <a class="dropdown-item" href="">GIM</a>
+                                    <a class="dropdown-item" href="#">TMQ</a>
                                 </div>
                             </div>
                             <div class="col">
-                                <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>
+                                <a class="ml-md-4 btn btn-primary" href="users.html" role="button">Enseignants </a>
+                            </div>
+                            <div class="col">
+                                <a class="ml-md-4 btn btn-primary" href="users.html" role="button">Vacataires</a>
+                            </div>
+                            <div class="col">
+                                <a class="ml-md-4 btn btn-primary" href="users.html" role="button">Employers </a>
                             </div>
                         </div>
                         
@@ -52,9 +60,9 @@
               </div>
                     <!-- DataTales Example -->
                 <div class="card- shadow- mb-4">
-                   <div class="mx-auto border-primary" style="width: 15%;">
-                        <h2 class="text-dark text-nowrap  h2 pl-4">Les livres</h2>
-                        <hr class="sidebar-divider bg-gradient-primary  my-0">
+                   <div class="mx-auto border-primary mr-4" style="width: 15%;">
+                        <h2 class="text-dark text-nowrap  h2 pl-4">Les Enseignants</h2>
+  
                    </div>
                         
                         <div class="card-body">
@@ -62,56 +70,57 @@
                                 <table class="table table-bordered table-hover" id="dataTable-" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ISBN</th>
-                                            <th>NV</th>
-                                            <th>Titre</th>
-                                            <th>Categorer</th>
-                                            <th>Authuer</th>
-                                            <th  class="d-flex justify-content-center">Etat</th>
+                                            <th>ID</th>
+                                            <th>Non</th>
+                                            <th>Prenom</th>
+                                            <th>Email</th>
+                                            <th>Img</th>
+                                            
                                         </tr>
                                     </thead>
-                                  
+                                 
                                     <tbody>
                                         <tr>
                                             <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
+                                            <td>jilali</td>
+                                            <td>karoe</td>
+                                            <td>j@gmail.com</td>
+                                            <td> <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png'?> "alt="" style="width: 40px;"></td>
+                                            
                                         </tr>
                                         <tr>
                                             <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
+                                            <td>jilali</td>
+                                            <td>karoe</td>
+                                            <td>j@gmail.com</td>
+                                            <td> <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png'?> "alt="" style="width: 40px;"></td>
+                                            
                                         </tr>
                                         <tr>
                                             <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
+                                            <td>jilali</td>
+                                            <td>karoe</td>
+                                            <td>j@gmail.com</td>
+                                            <td> <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>"" alt="" style="width: 40px;"></td>
+                                            
                                         </tr>
                                         <tr>
                                             <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
+                                            <td>jilali</td>
+                                            <td>karoe</td>
+                                            <td>j@gmail.com</td>
+                                            <td> <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?> "alt="" style="width: 40px;"></td>
+                                            
                                         </tr>
                                         <tr>
                                             <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
+                                            <td>jilali</td>
+                                            <td>karoe</td>
+                                            <td>j@gmail.com</td>
+                                            <td> <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png'?>" alt="" style="width: 40px;"></td>
+                                            
                                         </tr>
+                                        
                                         
                                     </tbody>
                                 </table>
@@ -124,4 +133,21 @@
                 
                   
             </div> 
+            <!-- End of Main Content -->
+
+
+
+
+
+
+
+
+
+
+
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'footer.php';?>
+
+
+
+
+

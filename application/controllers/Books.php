@@ -7,15 +7,18 @@
         public function __construct(){
 
         }
-
+//  function index call of all books
         public function index(){
-            $this->loadView('books'.DS.'books_addbook',[]);
+            $this->loadView('books'.DS.'books_home',[]);
+
         }
 
         public function addbook(){
-            echo 'add book - ';
+            $this->loadView('books'.DS.'books_addbook',[]);
         }
 
-        
+        public function getCate(){
+            $this->loadView('books'.DS.'books_cate',[]);
+        }
 
     }

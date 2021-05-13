@@ -61,9 +61,9 @@
  
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-table"></i>
-                    <span>Les lists</span></a>
+                <a class="nav-link" href="<?= URLROOT.DS.'books'.DS.'index' ?>">
+                    <i class="fas fa-book"></i>
+                    <span>Les livres</span></a>
             </li>
 
             <!-- Divider-->
@@ -71,9 +71,9 @@
  
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT.DS.'books'.DS.'index' ?>">
-                    <i class="fas fa-upload"></i>
-                    <span>Ajouter Livre</span></a>
+                <a class="nav-link" href="<?= URLROOT.DS.'Users'.DS.'index' ?>">
+                    <i class="fas fa-user"></i>
+                    <span>Les utilisateurs</span></a>
             </li>
 
             <!-- Divider-->

@@ -46,6 +46,7 @@
         </div>
     </div>
 
+    <script src="<?= URLROOT.DS.'public'.DS.'bootstrap'.DS.'popper.min.js' ?>"></script>
     <script src="<?= URLROOT.DS.'public'.DS.'bootstrap'.DS.'jquery.js' ?>"></script>
     <script src="<?= URLROOT.DS.'public'.DS.'bootstrap'.DS.'bootstrap.js' ?>"></script>
     <script src="<?= URLROOT.DS.'public'.DS.'bootstrap'.DS.'sb-admin-2.js' ?>"></script>

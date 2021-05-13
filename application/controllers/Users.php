@@ -2,8 +2,17 @@
 
 
 
-    class User extends Controller{
+    class Users extends Controller{
 
+
+        public function index(){
+            $this->loadView('users'.DS.'users_getUsers',[]);
+
+        }
+        public function getStudentByDiv(){
+            $this->loadView('users'.DS.'users_students',[]);
+
+        }
 
         public function login(){
             $data = [

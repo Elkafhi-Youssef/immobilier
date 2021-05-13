@@ -9,7 +9,7 @@ class Home extends Controller{
 
     // index : default method 
     public function index(){
-        $this->loadView('books'.DS.'books_home',[]);
+        $this->loadView('home'.DS.'home',[]);
     }
 
 }
