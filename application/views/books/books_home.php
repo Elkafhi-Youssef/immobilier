@@ -6,23 +6,8 @@
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
                     <div class="col-8">
-                        <div class="row">
-                            <div class="dropdown mr-1">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    Categorie
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item" href="<?= URLROOT.DS.'books'.DS.'getCate' ?>">Info</a>
-                                    <a class="dropdown-item" href="#">info1</a>
-                                    <a class="dropdown-item" href="#">info2</a>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>
-                            </div>
-                        </div>
-                        
-                        
+                        <a class="btn btn-primary" href="<?= URLROOT.DS.'books'?>" role="button">List des livres</a>
+                        <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>
                     </div>
                     <form class="col-4 form-inline navbar-search d-flex justify-content-between">
 
@@ -52,10 +37,9 @@
               </div>
                     <!-- DataTales Example -->
                 <div class="card- shadow- mb-4">
-                   <div class="mx-auto border-primary" style="width: 15%;">
-                        <h2 class="text-dark text-nowrap  h2 pl-4">Les livres</h2>
-                        <hr class="sidebar-divider bg-gradient-primary  my-0">
-                   </div>
+                    <hr class="sidebar-divider my-0">
+                    <h2 class="text-dark h2 pl-4">List des livre</h2>
+                    <hr class="sidebar-divider my-0">
                         
                         <div class="card-body">
                             <div class="table-responsive">

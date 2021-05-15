@@ -1,58 +1,23 @@
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'aside.php'; ?>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'nav.php';?>
-<!-- Begin Page Content -->
-                <!-- search by isbn -->
-                 <!-- search by isbn -->
-                 <div class="row d-flex justify-content-between " >
+<div class="container">
+                <div class="mb-4">
+                   <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
-                    <div class="col-4 col-sm-4">
-                        <div class="row">
-                            <div class="dropdown ml-3">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    Categorie
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item" href="<?= URLROOT.DS.'books'.DS.'getCate' ?>">Info</a>
-                                    <a class="dropdown-item" href="#">info1</a>
-                                    <a class="dropdown-item" href="#">info2</a>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>
-                            </div>
-                        </div>
-                        
-                        
+                    <div class="col-8">
+                        <a class="btn btn-primary" href="<?= URLROOT.DS.'books' ?>" role="button">List des livres</a>
+                        <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>
                     </div>
-                    <form class="row col-6 form-inline navbar-search d-flex justify-content-between">
+                    <div class="col-4 d-none">
+                    </div>
+                   
+                 </div>
+              </div>
+    
+                    <hr class="sidebar-divider my-0">
+                    <h2 class="text-dark h2 pl-4">Ajouter livre</h2>
+                    <hr class="sidebar-divider my-0">
 
-                            <div class=" dropdown ">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    select
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                            <div class=" input-group col">
-                                <input type="text" class="form-control  border-1 border-primary"
-                                    placeholder="Search for..." aria-label="Search"
-                                    aria-describedby="basic-addon2">
-                                <div class="input-group-append ">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-                <div class="container">
-                    <hr class="sidebar-divider my-0">
-                    <h2 class="ml-3">Ajouter livre</h2>
-                    <hr class="sidebar-divider my-0">
-                </div>
                 
                 <div class="container d-flex justify-content-center align-items-center mt-4">
                     <div>

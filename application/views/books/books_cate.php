@@ -8,15 +8,8 @@
                     <!-- Page Heading -->
                     <div class="col-8">
                         <div class="row">
-                            <div class="dropdown mr-1">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    Categorie<span>(info)</span>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item" href="<?= URLROOT.DS.'books'.DS.'getCate' ?>">Info</a>
-                                    <a class="dropdown-item" href="#">info1</a>
-                                    <a class="dropdown-item" href="#">info2</a>
-                                </div>
+                             <div class="col">
+                                <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">List des livres</a>
                             </div>
                             <div class="col">
                                 <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>

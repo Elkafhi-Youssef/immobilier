@@ -7,7 +7,7 @@
         public function __construct(){
 
         }
-//  function index call of all books
+        //  function index call of all books
         public function index(){
             $this->loadView('books'.DS.'books_home',[]);
 

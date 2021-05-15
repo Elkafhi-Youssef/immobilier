@@ -1,7 +1,5 @@
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'aside.php'; ?>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'nav.php';?>
-
-
 <!-- Begin Page Content -->
 <div class="container">
                 <div class="mb-4">
@@ -28,9 +26,7 @@
                             <div class="col">
                                 <a class="ml-md-4 btn btn-primary" href="users.html" role="button">Employers </a>
                             </div>
-                        </div>
-                        
-                        
+                        </div> 
                     </div>
                     <form class="col-4 form-inline navbar-search d-flex justify-content-between">
 
@@ -60,11 +56,9 @@
               </div>
                     <!-- DataTales Example -->
                 <div class="card- shadow- mb-4">
-                   <div class="mx-auto border-primary mr-4" style="width: 15%;">
-                        <h2 class="text-dark text-nowrap  h2 pl-4">Les Enseignants</h2>
-  
-                   </div>
-                        
+                    <hr class="sidebar-divider my-0">
+                    <h2 class="ml-3">Les Enseignants</h2>
+                    <hr class="sidebar-divider my-0">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover" id="dataTable-" width="100%" cellspacing="0">

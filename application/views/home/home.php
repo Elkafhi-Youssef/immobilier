@@ -6,7 +6,7 @@
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
                     <div class="col-8">
-                        <a class="btn btn-primary" href="#" role="button">À donner <span class="badge badge-light badge-counter">11</span></a>
+                        <a class="btn btn-primary" href="#" role="button">Á donner <span class="badge badge-light badge-counter">11</span></a>
                         <a class="ml-md-4 btn btn-primary" href="#" role="button">Á rendre <span class="badge badge-light badge-counter">20</span></a>
                         <a class="ml-md-4 btn btn-primary" href="#" role="button">En retard <span class="badge badge-light badge-counter">2</span></a>
                     </div>
@@ -38,7 +38,9 @@
               </div>
                     <!-- DataTales Example -->
                 <div class="card- shadow- mb-4">
+                    <hr class="sidebar-divider my-0">
                     <h2 class="text-dark h2 pl-4">A donner</h2>
+                    <hr class="sidebar-divider my-0">
                         
                         <div class="card-body">
                             <div class="table-responsive">
@@ -95,7 +97,9 @@
                             
                         </div>
                         <!-- table 2 -->
+                        <hr class="sidebar-divider my-0">
                         <h2 class="text-dark h2 pl-4">A rendre</h2>
+                        <hr class="sidebar-divider my-0">
                         
                         <div class="card-body">
                             <div class="table-responsive">
@@ -156,7 +160,9 @@
                     </div>
                     <!-- end table 2-->
                     <!-- table 3-->
+                    <hr class="sidebar-divider my-0">
                     <h2 class="text-dark h2 pl-4">En retard</h2>
+                    <hr class="sidebar-divider my-0">
                         
                         <div class="card-body">
                             <div class="table-responsive">
