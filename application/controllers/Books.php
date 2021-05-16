@@ -17,8 +17,4 @@
             $this->loadView('books'.DS.'books_addbook',[]);
         }
 
-        public function getCate(){
-            $this->loadView('books'.DS.'books_cate',[]);
-        }
-
     }
