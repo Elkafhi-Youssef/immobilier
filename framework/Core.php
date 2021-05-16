@@ -31,9 +31,11 @@ class Core{
           $this->params = $url;
           // Call the requested method with the appropriate values
           call_user_func_array([$this->currentController,$this->currentMethod],$this->params);
+      }else{
+        die("Err : requested method ($this->currentMethod) does not exist <br> <a href='".URLROOT."'>Go back</a>");  
       }
     }else {
-      die("Err : requested file ($url[0]) does not exist");
+      die("Err : requested controller ($url[0]) does not exist <br> <a href='".URLROOT."'>Go back</a>");  
     }
 
 
