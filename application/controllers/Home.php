@@ -1,5 +1,12 @@
 <?php
+/**
+ *  
+ * This file contains the default contriller 'Home' with 
+ * default method main 
+ * 
+ */
 
+ // Home class
 class Home extends Controller{
     
 
