@@ -35,4 +35,19 @@
       // --
       require_once APPLICATION_PATH.DS.'views'.DS.$viewName.'.php';
     }
+
+    /**
+     * 
+     * This method prepare data for ajax calls
+     * @param array $data to be prepared
+     * @return void
+     * 
+     */
+    public function jsonPrepare($data){
+      header("Access-Control-Allow-Origin: ".ORIGIN);
+      header("Content-Type: application/json; charset=UTF-8");
+      http_response_code(200);
+      echo json_encode($data);
+      exit;
+    }
   }
