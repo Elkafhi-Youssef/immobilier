@@ -28,4 +28,8 @@
 
    // URL ROOT
    define('URLROOT', 'http://127.0.0.1/ESTS-library');
+
+   // Access Control Allow Origin
+   define('ORIGIN', 'http://localhost/gbests');
+   
    
