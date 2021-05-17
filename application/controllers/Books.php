@@ -46,11 +46,7 @@
                     "date" => "2011/04/25"
                 ]
             ];
-            header("Access-Control-Allow-Origin: *");
-            header("Content-Type: application/json; charset=UTF-8");
-            http_response_code(200);
-            echo json_encode($data);
-            exit;
+            $this->jsonPrepare($data);
         }
 
         /**
@@ -85,11 +81,7 @@
                     "left_time" => 20
                 ]
             ];
-            header("Access-Control-Allow-Origin: *");
-            header("Content-Type: application/json; charset=UTF-8");
-            http_response_code(200);
-            echo json_encode($data);
-            exit;
+            $this->jsonPrepare($data);
         }
 
         /**
@@ -130,11 +122,7 @@
                     "user_phone" => "+212 686321458"
                 ]
             ];
-            header("Access-Control-Allow-Origin: *");
-            header("Content-Type: application/json; charset=UTF-8");
-            http_response_code(200);
-            echo json_encode($data);
-            exit;
+            $this->jsonPrepare($data);
         }
 
     }
