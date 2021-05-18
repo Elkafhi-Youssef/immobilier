@@ -19,8 +19,10 @@
      */
 
     public function setModelInstance($model){
-      require_once APPLICATION_PATH.DS.'models'.DS.ucwords($model).'.php';
-      $this->modelInstance = new $model();
+      if(file_exists(APPLICATION_PATH.DS.'models'.DS.ucwords($model).'.php')){
+        require_once APPLICATION_PATH.DS.'models'.DS.ucwords($model).'.php';
+        $this->modelInstance = new $model();
+      }else die("Err : model '$model' does not exist <br><a href='".URLROOT."'>Go back</a>");
     }
 
     /**
@@ -35,7 +37,7 @@
       // --
       if(file_exists(APPLICATION_PATH.DS.'views'.DS.$viewName.'.php')) 
       require_once APPLICATION_PATH.DS.'views'.DS.$viewName.'.php';
-      else die($e->getMessage()."<br><a href='".URLROOT."'>Go back</a>");
+      else die("Err : view '$viewName' does not exist <br><a href='".URLROOT."'>Go back</a>");
       //--
     }
 
