@@ -33,7 +33,10 @@
 
     public function loadView($viewName,$data = []){
       // --
+      if(file_exists(APPLICATION_PATH.DS.'views'.DS.$viewName.'.php')) 
       require_once APPLICATION_PATH.DS.'views'.DS.$viewName.'.php';
+      else die($e->getMessage()."<br><a href='".URLROOT."'>Go back</a>");
+      //--
     }
 
     /**
