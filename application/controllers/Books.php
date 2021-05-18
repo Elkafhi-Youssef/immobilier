@@ -9,7 +9,7 @@
         }
         //  function index call of all books
         public function index(){
-            $this->loadView('books'.DS.'books_home',[]);
+            $this->loadView('books'.DS.'books_list',[]);
 
         }
 
