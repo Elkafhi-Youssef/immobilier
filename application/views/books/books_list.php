@@ -2,6 +2,9 @@
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'nav.php';?>
  <!-- Begin Page Content -->
  <div class="container">
+                <div class="alert alert-dismissible fade show d-none" role="alert">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                </div>
                 <div class="mb-4">
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
                     <!-- Page Heading -->
@@ -12,7 +15,8 @@
                     <form class="col-4 form-inline navbar-search d-flex justify-content-between">
                         <div class="row">
                             <div>
-                                <select class="form-control border-primary" name="selected" id="select">
+                                <select class="filter-option form-control border-primary">
+                                    <option value="all">Tous</option>
                                     <option value="isbn">ISBN</option>
                                     <option value="title">Titre</option>
                                     <option value="author">Auteur</option>
@@ -20,10 +24,10 @@
                                 </select>
                             </div>
                             <div class="col input-group">
-                                <input type="text" class="form-control  border-1 border-primary"
+                                <input type="text" class="filter-input form-control  border-1 border-primary"
                                     placeholder="Search for..." aria-label="Search"
                                     aria-describedby="basic-addon2">
-                                <div class="input-group-append ">
+                                <div class="search-submit input-group-append ">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
@@ -46,66 +50,26 @@
                                     <thead>
                                         <tr>
                                             <th>ISBN</th>
-                                            <th>NV</th>
                                             <th>Titre</th>
-                                            <th>Categorer</th>
                                             <th>Authuer</th>
-                                            <th  class="d-flex justify-content-center">Etat</th>
+                                            <th>Categorer</th>
+                                            <th>Qté total</th>
+                                            <th>Qté disponible</th>
                                         </tr>
                                     </thead>
                                   
-                                    <tbody>
-                                        <tr>
-                                            <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1001</td>
-                                            <td>23</td>
-                                            <td>cpp</td>
-                                            <td>info</td>
-                                            <td>x</td>
-                                            <td class="d-flex justify-content-center"><a class="btn btn-success" href="#">A donner <i class="fa fa-arrow-alt-circle-right"></i> </a></td>
-                                        </tr>
+                                    <tbody class="table_body">
+                                        <!-- data will be displayed using javascript -->
+                                        
+                                        <div class="alert-no-data  alert-info fade show text-center d-none" role="alert">
+                                            <strong>Vide</strong>
+                                        </div>
                                         
                                     </tbody>
                                 </table>
-                               
                             </div>
-                            
                         </div>
-                       
-                    
-                
-                  
+
             </div>
             <script type="module" src="<?=URLROOT.'/public/js/data/books.js'?>"></script>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'footer.php';?>

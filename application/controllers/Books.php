@@ -19,6 +19,30 @@
 
         /**
          * 
+         * Get books based on a given filter  or all books if no filter specified
+         *  
+         * @param string $filterBy isbn|category|title|author
+         * @param string $params filter value
+         * 
+         */
+
+         public function getBooksList($filterBy = null,$params = []){
+            // Load and instatiate the book model
+            $this->setModelInstance('book');
+
+            // Convert params to array
+            if(!is_null($filterBy)){
+                $params = explode('/',trim($params,'/'));
+                $books = $this->modelInstance->filterBooks($filterBy,$params);
+            }else {
+                $books = $this->modelInstance->getBooks($filterBy,$params);
+            }
+
+            $this->jsonPrepare($books);
+        }
+
+        /**
+         * 
          * Ordred books
          * 
          */
