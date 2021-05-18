@@ -22,7 +22,7 @@
          * Ordred books
          * 
          */
-        public function toGive(){
+        public function toGive($filterBy = null,$data = []){
             $data = [
                 [
                     "id" => 1,
@@ -54,7 +54,7 @@
          * Books should be given back
          * 
          */
-        public function toGiveBack(){
+        public function toGiveBack($filterBy = null,$data = []){
             $data = [
                 [
                     "id" => 1001,
@@ -89,7 +89,7 @@
          * Books should be given back and late
          * 
          */
-        public function booksLate(){
+        public function booksLate($filterBy = null,$data = []){
             $data = [
                 [
                     "id" => 1001,
