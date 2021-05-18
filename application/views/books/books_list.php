@@ -10,18 +10,16 @@
                         <a class="ml-md-4 btn btn-primary" href="<?= URLROOT.DS.'books'.DS.'addbook' ?>" role="button">Ajouter livre </a>
                     </div>
                     <form class="col-4 form-inline navbar-search d-flex justify-content-between">
-
-                            <div class=" dropdown mr-1">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                    select
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
+                        <div class="row">
+                            <div>
+                                <select class="form-control border-primary" name="selected" id="select">
+                                    <option value="isbn">ISBN</option>
+                                    <option value="title">Titre</option>
+                                    <option value="author">Auteur</option>
+                                    <option value="category">Categorie</option>
+                                </select>
                             </div>
-                            <div class="col input-group  ">
+                            <div class="col input-group">
                                 <input type="text" class="form-control  border-1 border-primary"
                                     placeholder="Search for..." aria-label="Search"
                                     aria-describedby="basic-addon2">
@@ -31,6 +29,7 @@
                                     </button>
                                 </div>
                             </div>
+                        </div>
                     </form>
                    
                  </div>
@@ -107,5 +106,6 @@
                     
                 
                   
-            </div> 
+            </div>
+            <script type="module" src="<?=URLROOT.'/public/js/data/books.js'?>"></script>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'footer.php';?>
