@@ -67,7 +67,7 @@
 
 		public function execute($values = []){
 			$this->bindValues($values);
-			$this->sth->execute();
+			return $this->sth->execute();
 		}
 
 		/**
