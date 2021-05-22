@@ -40,35 +40,40 @@
                 </div> <!-- / end search by isbn -->
                  
                 <div class="container mt-4">
-                    <form action="" class="container">
+                    <form action="<?=URLROOT.'/books/addbook'?>" method="POST" class="container">
                        <div class="row">
                             <div class="mt-2 col-md-6">
+                                <input required type="text" class="form-control"
+                            placeholder="Entrer isbn" name='isbn'
+                            aria-describedby="basic-addon2">
+                            </div>
+                            <div class="mt-2 col-md-6">
+                                <input required type="text" class="form-control"
+                            placeholder="Entrer titre de l'ouvrage" name="title"
+                            aria-describedby="basic-addon2">
+                            </div>
+                            <div class="mt-2 col-md-6">
+                                <input required type="text" class="form-control"
+                            placeholder="Entrer le nom de l'auteur" name="author"
+                            aria-describedby="basic-addon2">
+                            </div>
+                            <div class="mt-2 col-md-6">
+                                <input required type="text" class="form-control"
+                            placeholder="Entrer le categorie de l'louvrage" name="category"
+                            aria-describedby="basic-addon2">
+                            </div>
+                            <div class="mt-2 col-md-6">
                                 <input required type="number" class="form-control"
-                            placeholder="Entrer isbn" 
+                            placeholder="Entrer l'année d'edition" name="year"
                             aria-describedby="basic-addon2">
                             </div>
-                            <div class="mt-2 col-md-6">
-                                <input required type="text" class="form-control"
-                            placeholder="Entrer titre de l'ouvrage" 
-                            aria-describedby="basic-addon2">
-                            </div>
-                            <div class="mt-2 col-md-6">
-                                <input required type="text" class="form-control"
-                            placeholder="Entrer le nom de l'auteur" 
-                            aria-describedby="basic-addon2">
-                            </div>
-                            <div class="mt-2 col-md-6">
-                                <input required type="text" class="form-control"
-                            placeholder="Entrer le categorie de l'louvrage" 
-                            aria-describedby="basic-addon2">
-                            </div>
-                            <div class="mt-2 col">
+                            <div class="mt-2 col-md-4">
                                 <input required type="number" class="form-control"
-                            placeholder="Entrer le nombre de copy a inserer" 
+                            placeholder="Entrer le nombre de copy a inserer" name="nbrOfCopies"
                             aria-describedby="basic-addon2">
                             </div>
                             <div class="mt-2 col-md-2">
-                                <input required type="submit" class="btn btn-success form-control"
+                                <input name='insertbook' required type="submit" class="btn btn-success form-control"
                             value="Inserer"
                             aria-describedby="basic-addon2">
                             </div>
