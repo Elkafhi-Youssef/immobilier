@@ -15,9 +15,20 @@
         }
 
         public function addbook($params = []){
+
+            // alert for form submission
+            $alert = [
+                'err' => false,
+                'msg' => '',
+                'className' => ''
+            ];
+
+            // load view 
             $this->loadView('books'.DS.'books_addbook',[]);
            
+            // Check if there is submission
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // fliter data
                 $filtredPost = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $bookInfo = [
                     $filtredPost['isbn'],
@@ -28,10 +39,31 @@
                     $filtredPost['nbrOfCopies']
                 ];
                
-                if($this->modelInstance->bookExists($bookInfo[0]))
-                $this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]]);
-                else
-                $this->modelInstance->addBook($bookInfo);
+                // 
+                if($this->modelInstance->rowExist('book','ISBN',$bookInfo[0])){
+                    if ($this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]])) $alert['err'] = false;
+                    else $alert['err'] = true;
+                }else{
+                    if ($this->modelInstance->addBook($bookInfo)) $alert['err'] = false;
+                    else $alert['err'] = true;
+                }
+
+                // 
+                if ($alert['err'])
+                    $alert = [
+                        'err' => true,
+                        'msg' => 'Oops somthing went wrong!!',
+                        'className' => 'alert alert-danger'
+                    ];
+                else 
+                    $alert = [
+                        'err' => false,
+                        'msg' => 'Operation done successfully!',
+                        'className' => 'alert alert-success'
+                    ];       
+                
+                // Reload view with alert 
+                $this->loadView('books'.DS.'books_addbook',$alert);
             }
         }
 

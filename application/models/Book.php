@@ -13,17 +13,15 @@ class Book{
         // prepare query
         $this->db->prepareQuery("INSERT INTO book(isbn,title,edition_year) VALUES(?,?,?)");
         if ($this->db->execute(["$params[0]","$params[1]","$params[2]"])) {
-            $this->addCopy([
-                $params[5],
-                $params[0]]
-            );
-        }else echo 01;
+            if ($this->addCopy([$params[5],$params[0]])) return true;
+        }
+        return false;
     }
 
     // add copy
     public function addCopy($val){
         // prepare query
-        $this->db->prepareQuery("INSERT INTO copy(copy_id,isbn) VALUES(5,?)");
+        $this->db->prepareQuery("INSERT INTO copy(copy_id,isbn) VALUES(null,?)");
         // counter : counts numbre of inserted books
         $inserted = 0;
         for ($i = 0 ;$i < $val[0];$i++) { 
@@ -31,18 +29,20 @@ class Book{
                 $inserted++;
             }
         }
-        return $inserted;
+        return ($inserted == $val[0]);
     }
 
     /**
-     * Chek if book exists
-     * @param string $isbn 
+     * Chek if row exists
+     * @param string $table 
+     * @param string $attr 
+     * @param string $attrValue
      * @return true|false
      */
 
-     public function bookExists($isbn){
-        $this->db->prepareQuery("SELECT * FROM `book` WHERE isbn like ?");
-        $this->db->execute([$isbn]);
+     public function rowExist($table,$attr,$attrValue){
+        $this->db->prepareQuery("SELECT * FROM $table WHERE $attr like ?");
+        $this->db->execute([$attrValue]);
         return ($this->db->getNumRows() == 1);
      }
 
