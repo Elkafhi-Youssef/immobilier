@@ -111,25 +111,27 @@
 		 * @return array|false
 		 */
 
-		 public function select($table,$attrs = [],$values = [],$all = '*'){
+		 public function select($table,$attrs = [],$values = [],$all = true){
 
 			$query = '';
-			$i = 0;
 			// form sql attributes and values
-			foreach ($attrs as $key => $attr) {
-				$query.=" $attr LIKE ? AND";
-				$i++;
-			}
-
-			// remove last 'AND' (!rtrim is case sensitive)
-			$query = rtrim($query,'AND');
-			
+			if (!empty($attrs)) {
+				foreach ($attrs as $key => $attr) {
+					$query.=" $attr LIKE ? AND";
+				}
+	
+				// remove last 'AND' (!rtrim is case sensitive)
+				$query = rtrim($query,'AND');	
+			}else $query = 1;
 			// form sql query
-			$query = "SELECT $all FROM $table WHERE $query";
+			$query = "SELECT * FROM $table WHERE $query";
 			// Prepare query
 			$this->prepareQuery($query);
 			// Execute query
+			if($all)
 			return $this->execute($values) ? $this->getResult() : false;
+			else
+			return $this->execute($values) ? $this->getRow() : false;
 		 }
 
 		/**
