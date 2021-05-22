@@ -71,6 +71,40 @@
 		}
 
 		/**
+		 * insert method
+		 * @param string $table name
+		 * @param array $attrs table attributes
+		 * @param array $values to be inserted
+		 * @return 
+		 */
+
+		 public function insert($table,$attrs = [],$values = []){
+			 
+			 $sqlAttrs = '';
+			 $sqlValues = '';
+			 $query = '';
+
+			 // form sql attributes and values
+			 foreach ($attrs as $key => $val) {
+				 $sqlAttrs.="$val,";
+				 $sqlValues.="?,";
+			 }
+
+			 // remove last comma
+			 $sqlAttrs = rtrim($sqlAttrs,',');
+			 $sqlValues = rtrim($sqlValues,',');
+			 
+			 // form sql query
+			 $query = "INSERT INTO $table($sqlAttrs) VALUES($sqlValues)";
+
+			 // Prepare query
+			 $this->prepareQuery($query);
+			 // Execute query
+			 $this->execute($values);
+			 echo $query;
+		 }
+
+		/**
 		 * 
 		 * Get result 
 		 * 
