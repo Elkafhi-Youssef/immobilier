@@ -108,7 +108,7 @@
 		 * @param string $table name
 		 * @param array $attrs table attributes
 		 * @param array $values to be selected
-		 * @return true|false
+		 * @return array|false
 		 */
 
 		 public function select($table,$attrs = [],$values = [],$all = '*'){
