@@ -18,16 +18,16 @@
             $this->loadView('books'.DS.'books_addbook',[]);
            
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                
+                $filtredPost = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $bookInfo = [
-                    $_POST['isbn'],
-                    $_POST['title'],
-                    $_POST['year'],
-                    $_POST['author'],
-                    $_POST['category'],
-                    $_POST['nbrOfCopies']
+                    $filtredPost['isbn'],
+                    $filtredPost['title'],
+                    $filtredPost['year'],
+                    $filtredPost['author'],
+                    $filtredPost['category'],
+                    $filtredPost['nbrOfCopies']
                 ];
-                
+
                 if($this->modelInstance->bookExists($bookInfo[0]))
                 $this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]]);
                 else
