@@ -5,7 +5,8 @@
 
 
         public function __construct(){
-
+            // Load and instatiate the book model
+            $this->setModelInstance('book');
         }
         //  function index call of all books
         public function index(){
@@ -17,7 +18,7 @@
             $this->loadView('books'.DS.'books_addbook',[]);
            
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $this->setModelInstance('book');
+                
                 $bookInfo = [
                     $_POST['isbn'],
                     $_POST['title'],
@@ -26,6 +27,7 @@
                     $_POST['category'],
                     $_POST['nbrOfCopies']
                 ];
+                
                 if($this->modelInstance->bookExists($bookInfo[0]))
                 $this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]]);
                 else
@@ -43,9 +45,6 @@
          */
 
          public function getBooksList($filterBy = null,$params = []){
-            // Load and instatiate the book model
-            $this->setModelInstance('book');
-
             // Convert params to array
             if(!is_null($filterBy)){
                 $params = explode('/',trim($params,'/'));

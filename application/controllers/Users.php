@@ -4,6 +4,10 @@
 
     class Users extends Controller{
 
+        public function __construct(){
+            // load & instantiate students model
+            $this->setModelInstance('user');
+        }
 
         public function index(){
             $this->loadView('users'.DS.'users',[]);
@@ -18,8 +22,7 @@
          * 
          */
         public function loadUsers($table = 'student'){
-            // load & instantiate students model
-            $this->setModelInstance('user');
+            
             $users = $this->modelInstance->getAllUsers($table);
 
             // Prepare for an ajax request
@@ -37,8 +40,6 @@
          * 
          */
         public function loadFiltredUsers($table,$filterBy = null,$params = []){
-            // Load and instatiate the user model
-            $this->setModelInstance('user');
 
             // Convert params to array
             $params = explode('/',trim($params,'/'));
