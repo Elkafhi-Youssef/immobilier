@@ -103,6 +103,35 @@
 			 return $this->execute($values);
 		 }
 
+		 /**
+		 * Select method
+		 * @param string $table name
+		 * @param array $attrs table attributes
+		 * @param array $values to be selected
+		 * @return true|false
+		 */
+
+		 public function select($table,$attrs = [],$values = [],$all = '*'){
+
+			$query = '';
+			$i = 0;
+			// form sql attributes and values
+			foreach ($attrs as $key => $attr) {
+				$query.=" $attr LIKE ? AND";
+				$i++;
+			}
+
+			// remove last 'AND' (!rtrim is case sensitive)
+			$query = rtrim($query,'AND');
+			
+			// form sql query
+			$query = "SELECT $all FROM $table WHERE $query";
+			// Prepare query
+			$this->prepareQuery($query);
+			// Execute query
+			return $this->execute($values) ? $this->getResult() : false;
+		 }
+
 		/**
 		 * 
 		 * Get result 
