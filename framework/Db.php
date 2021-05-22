@@ -79,7 +79,7 @@
 		 * 
 		 */
 
-		public function getResult($type = PDO::FETCH_OBJ){
+		public function getResult($type = PDO::FETCH_ASSOC){
 			return $this->sth->fetchAll($type);
 		}
 
@@ -91,7 +91,7 @@
 		 */
 
 		public function getRow(){
-			return $this->fetch(PDO::FETCH_OBJ);
+			return $this->fetch(PDO::FETCH_ASSOC);
 		}
 
 		/**
