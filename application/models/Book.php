@@ -10,9 +10,8 @@ class Book{
 
     // add book
     public function addBook($params){
-        // prepare query
-        $this->db->prepareQuery("INSERT INTO book(isbn,title,edition_year) VALUES(?,?,?)");
-        if ($this->db->execute(["$params[0]","$params[1]","$params[2]"])) {
+        // insert data 
+        if ($this->db->insert('book',['isbn','title','edition_year'],["$params[0]","$params[1]","$params[2]"])){
             if ($this->addCopy([$params[5],$params[0]])) return true;
         }
         return false;
@@ -20,14 +19,11 @@ class Book{
 
     // add copy
     public function addCopy($val){
-        // prepare query
-        $this->db->prepareQuery("INSERT INTO copy(copy_id,isbn) VALUES(null,?)");
         // counter : counts numbre of inserted books
         $inserted = 0;
         for ($i = 0 ;$i < $val[0];$i++) { 
-           if ($this->db->execute(["$val[1]"])) {
-                $inserted++;
-            }
+           if ($this->db->insert('copy',['copy_id','isbn'],["null","$val[1]"]))
+            $inserted++;
         }
         return ($inserted == $val[0]);
     }
