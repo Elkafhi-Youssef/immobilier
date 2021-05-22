@@ -75,7 +75,7 @@
 		 * @param string $table name
 		 * @param array $attrs table attributes
 		 * @param array $values to be inserted
-		 * @return 
+		 * @return true|false
 		 */
 
 		 public function insert($table,$attrs = [],$values = []){
@@ -100,8 +100,7 @@
 			 // Prepare query
 			 $this->prepareQuery($query);
 			 // Execute query
-			 $this->execute($values);
-			 echo $query;
+			 return $this->execute($values);
 		 }
 
 		/**
