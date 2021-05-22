@@ -2,7 +2,7 @@
 
 
 
-    class Users{
+    class User{
 
         private $db = null;
        
@@ -10,10 +10,19 @@
             $this->db = new Db();
         }
 
-        public function getUserByEmail($mail){
-            $this->db->prepareQuery('SELECT * FROM students WHERE email LIKE ? ');
-            $this->db->execute([$mail]);
-            return $this->db->getNumRows();
+        // Get all users
+        public function getAllUsers($table){
+            $this->db->prepareQuery("SELECT * FROM $table");
+            $this->db->execute();
+            return $this->db->getResult(); 
         }
+
+        // filtered users
+        public function getUsersByFilter($table,$filter,$values){
+            $this->db->prepareQuery("SELECT * FROM $table WHERE $filter LIKE ?");
+            $this->db->execute(["%$values[0]%"]);
+            return $this->db->getResult();
+        }
+
 
     }
