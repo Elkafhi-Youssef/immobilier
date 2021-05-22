@@ -27,11 +27,11 @@
                     $filtredPost['category'],
                     $filtredPost['nbrOfCopies']
                 ];
-
+               
                 if($this->modelInstance->bookExists($bookInfo[0]))
                 $this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]]);
                 else
-                $this->modelInstance->addCopy($bookInfo);
+                $this->modelInstance->addBook($bookInfo);
             }
         }
 
