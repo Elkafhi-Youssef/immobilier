@@ -13,7 +13,15 @@
                    
                  </div>
               </div>
-    
+                    <!-- alert --> 
+                    <?php if(isset($data['err'])): ?>   
+                    <div class="<?=$data['class-name']?> alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Success!</strong> <?=$data['msg']?>
+                    </div>
+                    <?php endif; ?>   
+                    <!-- / end alert -->
+
                     <hr class="sidebar-divider my-0">
                     <h2 class="text-dark h2 pl-4">Ajouter livre</h2>
                     <hr class="sidebar-divider my-0">

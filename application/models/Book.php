@@ -28,6 +28,36 @@ class Book{
         return ($inserted == $val[0]);
     }
 
+    // add author
+    public function addAuthor($authorname,$isbn){
+        
+        if (!$this->rowExist('author','fullname',$authorname)) {
+            if($this->db->insert('author',['author_id','fullname'],[null,$authorname])){
+                $authorId = $this->db->select('author',['fullname'],[$authorname],false)['author_id'];
+                return $this->db->insert('ecrire',['isbn','author_id'],[$isbn,$authorId]);
+            }
+        }else{
+            $authorId = $this->db->select('author',['fullname'],[$authorname],false)['author_id'];
+            return $this->db->insert('ecrire',['isbn','author_id'],[$isbn,$authorId]);
+        }
+        return false;
+    }
+
+    // add category
+    public function addCattegory($catName,$isbn){
+
+        if (!$this->rowExist('category','cat_name',$catName)) {
+            if($this->db->insert('category',['cat_id','cat_name'],[null,$catName])){
+                $catId = $this->db->select('category',['cat_name'],[$catName],false)['cat_id'];
+                return $this->db->insert('existe',['isbn','cat_id'],[$isbn,$catId]);
+            }
+        }else{
+            $catId = $this->db->select('category',['cat_name'],[$catName],false)['cat_id'];
+            return $this->db->insert('existe',['isbn','cat_id'],[$isbn,$catId]);
+        }
+        return false;   
+    }
+
     /**
      * Chek if row exists
      * @param string $table 
