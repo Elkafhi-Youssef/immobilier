@@ -167,6 +167,16 @@
 			return $this->sth->rowCount();
 		}
 
+		/**
+		 * lastInsertId : return the last inserted id
+		 * 
+		 * @param void
+		 * @return integer|string
+		 * 
+		 */
+		public function lastInsertId(){
+			return $this->sth->lastInsertId();
+		}
 		
 	}
 	
