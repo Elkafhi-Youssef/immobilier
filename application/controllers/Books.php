@@ -20,16 +20,16 @@
             $alert = [
                 'err' => false,
                 'msg' => '',
-                'className' => ''
+                'class-name' => ''
             ];
-
+            
             // load view 
-            $this->loadView('books'.DS.'books_addbook',[]);
-           
+            //$this->loadView('books'.DS.'books_addbook',[]);
+            
             // Check if there is submission
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // fliter data
-                $filtredPost = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $filtredPost = !is_null($_POST['isbn']) ? filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING) : [];
                 $bookInfo = [
                     $filtredPost['isbn'],
                     $filtredPost['title'],
@@ -44,27 +44,33 @@
                     if ($this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]])) $alert['err'] = false;
                     else $alert['err'] = true;
                 }else{
+                    
                     if ($this->modelInstance->addBook($bookInfo)) $alert['err'] = false;
                     else $alert['err'] = true;
+                    
+                    $this->modelInstance->addAuthor($bookInfo[3],$bookInfo[0]);
+                    $this->modelInstance->addCattegory($bookInfo[4],$bookInfo[0]);
                 }
 
                 // 
-                if ($alert['err'])
+                if ($alert['err']){
                     $alert = [
                         'err' => true,
                         'msg' => 'Oops somthing went wrong!!',
-                        'className' => 'alert alert-danger'
-                    ];
-                else 
+                        'class-name' => 'alert alert-danger'
+                    ];}
+                else{ 
                     $alert = [
                         'err' => false,
                         'msg' => 'Operation done successfully!',
-                        'className' => 'alert alert-success'
-                    ];       
+                        'class-name' => 'alert alert-success'
+                    ];}       
                 
                 // Reload view with alert 
                 $this->loadView('books'.DS.'books_addbook',$alert);
-            }
+                unset($_POST);
+                unset($bookInfo);
+            }else  $this->loadView('books'.DS.'books_addbook',[]);
         }
 
         /**
