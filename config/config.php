@@ -21,13 +21,13 @@
    
 
    // Database params
-   define('DB_NAME','test');
+   define('DB_NAME','library');
    define('DB_USER','root');
    define('DB_HOST','127.0.0.1');
    define('DB_PASSWD','');
 
    // URL ROOT
-   define('URLROOT', 'http://127.0.0.1/ESTS-library');
+   define('URLROOT', 'http://127.0.0.1/gbests');
 
    // Access Control Allow Origin
    define('ORIGIN', 'http://localhost/gbests');
