@@ -79,7 +79,14 @@ class Book{
      */
 
     public function getBooks(){
-        $this->db->prepareQuery("SELECT * FROM `book`");
+        
+        $this->db->prepareQuery(
+            'SELECT b.isbn, b.title, a.fullname, c.cat_name
+            FROM book as b  INNER JOIN existe as e ON b.ISBN = e.ISBN 
+            INNER JOIN category as c ON e.cat_id = c.cat_id 
+            INNER JOIN ecrire as ec ON b.ISBN = ec.ISBN INNER JOIN author as a ON a.author_id = ec.author_id'
+        );
+
         $this->db->execute();
         return $this->db->getResult(); 
     }
@@ -93,7 +100,12 @@ class Book{
      */
 
     public function filterBooks($filter,$values){
-        $this->db->prepareQuery("SELECT * FROM `book` WHERE $filter LIKE ?");
+        $this->db->prepareQuery(
+        "SELECT b.isbn, b.title, a.fullname, c.cat_name
+        FROM book as b  INNER JOIN existe as e ON b.ISBN = e.ISBN  AND b.$filter LIKE ?
+        INNER JOIN category as c ON e.cat_id = c.cat_id 
+        INNER JOIN ecrire as ec ON b.ISBN = ec.ISBN INNER JOIN author as a ON a.author_id = ec.author_id"
+        );
         $this->db->execute(["%$values[0]%"]);
         return $this->db->getResult();
     }
