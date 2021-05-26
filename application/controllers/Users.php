@@ -59,7 +59,7 @@ class Users extends Controller{
         // function addComand($tablename,$attrs ,$values ) 
         public function commandUser($id_user,$id_copy){
             $date_comand =date('Y-m-n');
-            if($this->modelInstance->testReg($id_user) == 1){
+            if($this->modelInstance->testReg($id_user) == 'std'){
             $add = $this->modelInstance->addComand('std_order',[`order_date`, `date_prise`, `student_id`, `copy_id`],[$date_comand,0000-00-00,'k130016842','1']);
             }elseif($this->modelInstance->testReg($id_user) == 2){
                 $add = $this->modelInstance->addComand('tea_order',[`order_date`, `date_prise`, `teacher_id`, `copy_id`],[$date_comand,0000-00-00,'Y.Elkafhi','1']); 
@@ -104,7 +104,7 @@ class Users extends Controller{
 
              if (empty($data['id_user_err']) && empty($data['password_err'])) {
 
-                    if($this->modelInstance->testReg($data['id_user'])==1){
+                    if($this->modelInstance->testReg($data['id_user'])=='std'){
                         $dt = $this->modelInstance->loginUser('student','student_id',$data['id_user'],$data['password']);
                                     if ($dt) {
                                         

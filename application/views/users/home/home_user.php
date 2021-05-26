@@ -27,10 +27,11 @@
     <!-- start group cards  -->
     <div class=" row mt-5 mb-5 justify-content-around container ">
         <!-- card start  -->
+           <?php foreach($data as $data){?>
         <div class=" card col-3 p-0 mt-3 " style="width: 18rem;         height:auto ;">
             <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>" class=" card-img-top " alt="...">
             <div class="card-body ">
-                <h4 class="text-center card-title  ">JavaScript</h4>
+                <h4 class="text-center card-title  "><?=$data['title'];?></h4>
                 <div class="d-flex justify-content-around">
                     <span class="">Categorie</span>
                     <span>Auteur</span>
@@ -41,87 +42,9 @@
                 </div>
             </div>
         </div>
+        <?php } ?>
         <!-- card end -->
-        <!-- card start  -->
-        <div class=" card col-3 p-0 mt-3 " style="width: 18rem;         height:auto ;">
-            <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>" class=" card-img-top " alt="...">
-            <div class="card-body ">
-                <h4 class="text-center card-title  ">JavaScript</h4>
-                <div class="d-flex justify-content-around">
-                    <span class="">Categorie</span>
-                    <span>Auteur</span>
-                </div>
-                <hr class="border-1">
-                <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  ">Commander ici</a>
-                </div>
-            </div>
-        </div>
-        <!-- card end -->
-        <!-- card start  -->
-        <div class=" card col-3 p-0 mt-3 " style="width: 18rem;         height:auto ;">
-            <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>" class=" card-img-top " alt="...">
-            <div class="card-body ">
-                <h4 class="text-center card-title  ">JavaScript</h4>
-                <div class="d-flex justify-content-around">
-                    <span class="">Categorie</span>
-                    <span>Auteur</span>
-                </div>
-                <hr class="border-1">
-                <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  ">Commander ici</a>
-                </div>
-            </div>
-        </div>
-        <!-- card end -->
-        <!-- card start  -->
-        <div class=" card col-3 p-0 mt-3 " style="width: 18rem;         height:auto ;">
-            <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>" class=" card-img-top " alt="...">
-            <div class="card-body ">
-                <h4 class="text-center card-title  ">JavaScript</h4>
-                <div class="d-flex justify-content-around">
-                    <span class="">Categorie</span>
-                    <span>Auteur</span>
-                </div>
-                <hr class="border-1">
-                <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  ">Commander ici</a>
-                </div>
-            </div>
-        </div>
-        <!-- card end -->
-        <!-- card start  -->
-        <div class=" card col-3 p-0  mt-3" style="width: 18rem;height:auto ;">
-            <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>" class=" card-img-top " alt="...">
-            <div class="card-body ">
-                <h4 class="text-center card-title  ">JavaScript</h4>
-                <div class="d-flex justify-content-around">
-                    <span class="">Categorie</span>
-                    <span>Auteur</span>
-                </div>
-                <hr class="border-1">
-                <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  ">Commander ici</a>
-                </div>
-            </div>
-        </div>
-        <!-- card end -->
-        <!-- card start  -->
-        <div class=" card col-3 p-0 mt-3 " style="width: 18rem;height:auto ;">
-            <img src="<?= URLROOT.DS.'public'.DS.'images'.DS.'ests.png' ?>" class=" card-img-top " alt="...">
-            <div class="card-body ">
-                <h4 class="text-center card-title  ">JavaScript</h4>
-                <div class="d-flex justify-content-around">
-                    <span class="">Categorie</span>
-                    <span>Auteur</span>
-                </div>
-                <hr class="border-1">
-                <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  "> <?php echo'<p>'. $_SESSION['user_id'] .'</p>' ?></a>
-                </div>
-            </div>
-        </div>
-        <!-- card end -->
+       
 
 
     </div>

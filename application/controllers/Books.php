@@ -202,4 +202,19 @@
             $this->jsonPrepare($data);
         }
 
+
+
+
+        // get all books from page user 
+        public function getbooks( $var = null)
+        {
+            $books = $this->modelInstance->getBooks();
+
+            if ($books) {
+                    
+                    $this->loadView('users'.DS.'home'.DS.'home_user',$books);
+                } else {
+                    die("something went wrong!!");
+                }
+        }
     }

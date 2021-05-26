@@ -40,7 +40,7 @@
          public function testReg($idUser)
         {
             if(preg_match("/^[a-z][0-9]/i", $idUser)){
-                return 1;
+                return 'std';
             }elseif(preg_match("/^[A-Z][.][A-Z]/i", $idUser)){
                 return 2;
             }elseif(preg_match("/servece[.][A-Z]/i", $idUser)){return 3;}
