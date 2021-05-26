@@ -1,7 +1,6 @@
 
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'user.nav.php'; ?>
-
-
+ 
 <div class="w-50 container-sm mt-5">
     <div class="row">
         <div class="col-4">
@@ -38,7 +37,7 @@
                 </div>
                 <hr class="border-1">
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  ">Commander ici</a>
+                    <a href="<?=URLROOT.DS.'Users'.DS.'commandUser/'.$_SESSION['user_id'].'/2'?>" class="btn btn-primary mt-2  ">Commander ici</a>
                 </div>
             </div>
         </div>
@@ -118,7 +117,7 @@
                 </div>
                 <hr class="border-1">
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary mt-2  ">Commander ici</a>
+                    <a href="#" class="btn btn-primary mt-2  "> <?php echo'<p>'. $_SESSION['user_id'] .'</p>' ?></a>
                 </div>
             </div>
         </div>

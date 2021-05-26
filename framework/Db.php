@@ -71,6 +71,70 @@
 		}
 
 		/**
+		 * insert method
+		 * @param string $table name
+		 * @param array $attrs table attributes
+		 * @param array $values to be inserted
+		 * @return true|false
+		 */
+
+		 public function insert($table,$attrs = [],$values = []){
+			 
+			 $sqlAttrs = '';
+			 $sqlValues = '';
+			 $query = '';
+
+			 // form sql attributes and values
+			 foreach ($attrs as $key => $val) {
+				 $sqlAttrs.="$val,";
+				 $sqlValues.="?,";
+			 }
+
+			 // remove last comma
+			 $sqlAttrs = rtrim($sqlAttrs,',');
+			 $sqlValues = rtrim($sqlValues,',');
+			 
+			 // form sql query
+			 $query = "INSERT INTO $table($sqlAttrs) VALUES($sqlValues)";
+
+			 // Prepare query
+			 $this->prepareQuery($query);
+			 // Execute query
+			 return $this->execute($values);
+		 }
+
+		 /**
+		 * Select method
+		 * @param string $table name
+		 * @param array $attrs table attributes
+		 * @param array $values to be selected
+		 * @return array|false
+		 */
+
+		 public function select($table,$attrs = [],$values = [],$all = true){
+
+			$query = '';
+			// form sql attributes and values
+			if (!empty($attrs)) {
+				foreach ($attrs as $key => $attr) {
+					$query.=" $attr LIKE ? AND";
+				}
+	
+				// remove last 'AND' (!rtrim is case sensitive)
+				$query = rtrim($query,'AND');	
+			}else $query = 1;
+			// form sql query
+			$query = "SELECT * FROM $table WHERE $query";
+			// Prepare query
+			$this->prepareQuery($query);
+			// Execute query
+			if($all)
+			return $this->execute($values) ? $this->getResult() : false;
+			else
+			return $this->execute($values) ? $this->getRow() : false;
+		 }
+
+		/**
 		 * 
 		 * Get result 
 		 * 
@@ -79,7 +143,7 @@
 		 * 
 		 */
 
-		public function getResult($type = PDO::FETCH_OBJ){
+		public function getResult($type = PDO::FETCH_ASSOC){
 			return $this->sth->fetchAll($type);
 		}
 
@@ -91,7 +155,11 @@
 		 */
 
 		public function getRow(){
+
 			return $this->sth->fetch(PDO::FETCH_OBJ);
+
+			return $this->sth->fetch(PDO::FETCH_ASSOC);
+
 		}
 
 		/**
@@ -103,6 +171,16 @@
 			return $this->sth->rowCount();
 		}
 
+		/**
+		 * lastInsertId : return the last inserted id
+		 * 
+		 * @param void
+		 * @return integer|string
+		 * 
+		 */
+		public function lastInsertId(){
+			return $this->sth->lastInsertId();
+		}
 		
 	}
 	

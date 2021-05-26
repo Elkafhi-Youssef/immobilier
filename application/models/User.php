@@ -30,12 +30,30 @@
             return ($this->db->getNumRows() >0 );
             
         }
-        public function addComand($iduser,$idcopy){
-            $this->db->prepareQuery("INSERT INTO `std_order`(`order_date`, `date_prise`, `student_id`, `copy_id`) VALUES ('2021/05/25','','2021/05/25','5','6') ");
-            $this->db->execute(["%$values[0]%"]);
-            return $this->db->getResult();
-
-
-
+        // do command 
+        public function addComand($tablename,$attrs ,$values ){
+            return $this->db->insert($tablename,$attrs,$values);
         }
+
+        // test witch tablbe use in login 
+
+         public function testReg($idUser)
+        {
+            if(preg_match("/^[a-z][0-9]/i", $idUser)){
+                return 1;
+            }elseif(preg_match("/^[A-Z][.][A-Z]/i", $idUser)){
+                return 2;
+            }elseif(preg_match("/servece[.][A-Z]/i", $idUser)){return 3;}
+        }
+
+        // start session 
+        // public function startSession($sessionUser)
+        // {
+        //     session_start();
+        //     if (isset($startSession)){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // }
     }

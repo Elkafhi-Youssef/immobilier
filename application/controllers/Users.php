@@ -43,18 +43,36 @@ class Users extends Controller{
 
             // Convert params to array
             $params = explode('/',trim($params,'/'));
-            $books = $this->modelInstance->getUsersByFilter($table,$filterBy,$params);
+            $books = $this->modelInstance->getUsersByFilter($table,$filterBy,$params);  
             
             // Prepare for an ajax request
             $this->jsonPrepare($books);
         }
-        public function userHome(){
-            $this->loadView('users'.DS.'home'.DS.'home_user',[]);
+        // public function userHome(){
+        //     $this->loadView('users'.DS.'home'.DS.'home_user',[]);
             
-        }
-        public function commandUser(){
+        // }
 
 
+
+
+        // function addComand($tablename,$attrs ,$values ) 
+        public function commandUser($id_user,$id_copy){
+            $date_comand =date('Y-m-n');
+            if($this->modelInstance->testReg($id_user) == 1){
+            $add = $this->modelInstance->addComand('std_order',[`order_date`, `date_prise`, `student_id`, `copy_id`],[$date_comand,0000-00-00,'k130016842','1']);
+            }elseif($this->modelInstance->testReg($id_user) == 2){
+                $add = $this->modelInstance->addComand('tea_order',[`order_date`, `date_prise`, `teacher_id`, `copy_id`],[$date_comand,0000-00-00,'Y.Elkafhi','1']); 
+            }elseif($this->modelInstance->testReg($id_user) == 3){
+                $add = $this->modelInstance->addComand('emp_order',[`order_date`, `date_prise`, `emp_id`, `copy_id`],[$date_comand,0000-00-00,'servece.you','1']);
+            }
+
+            if($add){
+                echo "succes";
+            }
+            else{
+                echo "failed";
+            }
         }
         
         
@@ -66,62 +84,76 @@ class Users extends Controller{
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'email' => $_POST['email'],
+                'id_user' => $_POST['id_user'],
                 'password' => $_POST['password'],
-                'email_err' => '',  
+                'id_user_err' => '',  
                 'password_err' => ''
             ]; 
-            if (empty($data['email']) &&(empty($data['password']))) {
-                $data['email_err'] = 'Please fill your email';
+            if (empty($data['id_user']) &&(empty($data['password']))) {
+                $data['id_user_err'] = 'Please fill your username';
                 $data['password_err'] = 'Please fill your password';
             }
-            else if(empty($data['email'])){
-                $data['email_err'] = 'Please fill your email';
+            else if(empty($data['id_user'])){
+                $data['id_user_err'] = 'Please fill your username';
             }
-            else if (empty($data['password'])){
+            else if(empty($data['password'])) {
                 $data['password_err'] = 'Please fill your password';
             }
-            else if (empty($data['email_err']) && empty($data['password_err'])) {
 
-                    if(preg_match("/^[a-z][0-9]/i", $data['email'])){
-                        $dt = $this->modelInstance->loginUser('student','student_id',$data['email'],$data['password']);
+
+
+             if (empty($data['id_user_err']) && empty($data['password_err'])) {
+
+                    if($this->modelInstance->testReg($data['id_user'])==1){
+                        $dt = $this->modelInstance->loginUser('student','student_id',$data['id_user'],$data['password']);
                                     if ($dt) {
                                         
-                                        $_SESSION['user_id'] = $dt['student_id'];
-                                        $_SESSION['user_name'] = $dt['email'];
-                                        $this->loadView('users'.DS.'home'.DS.'home_user',[]);
-                    
-                                        
+                                        $_SESSION['user_id'] =$data['id_user'] ;
+                                        $_SESSION['user_name'] = $dt['email']; 
+                                        echo    $_SESSION['user_id'];                                    
+                                         $this->loadView('users'.DS.'home'.DS.'home_user',[]);     
                                     } else {
                                         //password incorrect
                                         
-                                        $data['email_err'] = 'password or email incorrect';
-                                        $data['password_err'] = 'password or email incorrect';
+                                        $data['id_user_err'] = 'password or username incorrect';
+                                        $data['password_err'] = 'password or username incorrect';
                                         $this->loadView('users'.DS.'home'.DS.'login_user',$data);
                                     }
-                                    
                     }
-                     else if(preg_match("/^[A-Z][.][A-Z]/i", $data['email'])){
-                         $dt = $this->modelInstance->loginUser('teacher','teacher_id',$data['email'],$data['password']);    
+                     else if($this->modelInstance->testReg($data['id_user'])==2){
+                         $dt = $this->modelInstance->loginUser('teacher','teacher_id',$data['id_user'],$data['password']);    
                                 if($dt){
                                         $_SESSION['user_id'] = $dt['teacher_id'];
                                         $_SESSION['user_name'] = $dt['email'];
                                         $this->loadView('users'.DS.'home'.DS.'home_user',[]);
                                 }else {
                                     //password incorrect
-                                    $data['email_err'] = 'password or email incorrect';
-                                    $data['password_err'] = 'password or email incorrect';
-
+                                    $data['id_user_err'] = 'password or username incorrect';
+                                    $data['password_err'] = 'password or username incorrect';
                                     $this->loadView('users'.DS.'home'.DS.'login_user',$data);
                                 }
-                        }
+                        }elseif($this->modelInstance->testReg($data['id_user'])==3){
+                            $dt = $this->modelInstance->loginUser('employe','empl_id',$data['id_user'],$data['password']);    
+                            if($dt){
+                                    $_SESSION['user_id'] = $dt['emp_id'];
+                                    $_SESSION['user_name'] = $dt['email'];
+                                    $this->loadView('users'.DS.'home'.DS.'home_user',[]);
+                            }else {
+                                //password incorrect
+                                $data['id_user_err'] = 'password or username incorrect';
+                                $data['password_err'] = 'password or username incorrect';
+
+                                $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+                            }
+                        }                       
+                    }else{
                         $this->loadView('users'.DS.'home'.DS.'login_user',$data); 
-                    }$this->loadView('users'.DS.'home'.DS.'login_user',$data); 
+                    } 
         }else{
             $data = [
-                'email' => '',
+                'id_user' => '',
                 'password' => '',
-                'email_err' => '',  
+                'id_user_err' => '',  
                 'password_err' => ''
             ]; 
 

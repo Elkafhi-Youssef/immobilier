@@ -45,13 +45,13 @@
           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
           <div class="form-floating mb-4">
-            <input type="text" class="form-control" name="email"  value="<?php echo $data['email'] ?>" id="floatingInput" placeholder="Password" >
-            <span class="text-danger text-start"><?php echo $data['email_err'] ?></span>
-            <label for="floatingInput">Email address</label>
+            <input type="text" class="form-control" name="id_user"  value="<?php echo $data['id_user'] ?>" id="floatingInput" placeholder="Password" >
+            <span class="text-danger text-start"><?php echo $data['id_user_err'] ?></span>
+            <label for="floatingInput">Username</label>
           </div>
           <div class="form-floating mb-4">
             <input type="password"  name="password"  value="<?php echo $data['password'] ?>" class="form-control" id="floatingPassword" placeholder="Password">
-            <span class="invalid-feedbac"><?php echo $data['password_err']?></span> 
+            <span class="text-danger text-start"><?php echo $data['password_err']?></span> 
             <label for="floatingPassword">Password</label>
           </div>
 
