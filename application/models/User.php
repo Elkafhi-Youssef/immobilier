@@ -35,15 +35,26 @@
             return $this->db->insert($tablename,$attrs,$values);
         }
 
-        // test witch tablbe use in login 
+        /**
+         * defineUser : 
+         * @param string : email|id...
+         * @return array|bool
+         * 
+         */
 
-         public function testReg($idUser)
-        {
-            if(preg_match("/^[a-z][0-9]/i", $idUser)){
-                return 'std';
-            }elseif(preg_match("/^[A-Z][.][A-Z]/i", $idUser)){
-                return 2;
-            }elseif(preg_match("/servece[.][A-Z]/i", $idUser)){return 3;}
+         public function defineUser($userLogin){
+            if(preg_match("/^[a-z][0-9]/i", $userLogin)){
+                return ['student','student_id',$userLogin];
+            } elseif(preg_match("teacher patern", $userLogin)){
+                return ['teacher','email',$userLogin];
+            }elseif(preg_match("/s[.][A-Z]/i", $userLogin)){
+                $value = ltrim(ltrim($userLogin,'s'),'.');
+                return ['employe','email',$value]; 
+            }elseif(preg_match("/admin[.][A-Z]/i", $userLogin)){
+                $value = ltrim(ltrim($userLogin,'admin'),'.');
+                return ['admin','email',$value];  
+            }              
+            return false;
         }
 
         // start session 
