@@ -150,7 +150,7 @@ class Book{
         if(is_null($filter)){
             $query = "SELECT $attrs
                 FROM $userTable as u
-                INNER JOIN $userOrderTable as o ON o.$id = u.$id 
+                INNER JOIN $userOrderTable as o ON o.$id = u.$id AND date_prise = '0' 
                 INNER JOIN `copy` as c ON c.copy_id = o.copy_id 
                 INNER JOIN book as b ON b.ISBN = c.ISBN
                 INNER JOIN ecrire as e ON e.ISBN = b.ISBN
@@ -189,7 +189,7 @@ class Book{
             // prepare query
             $query = "SELECT $attrs
                 FROM $userTable as u 
-                INNER JOIN $userOrderTable as o ON o.$id = u.$id $fname_filter $lname_filter
+                INNER JOIN $userOrderTable as o ON o.$id = u.$id AND date_prise = '0' $fname_filter $lname_filter
                 INNER JOIN `copy` as c ON c.copy_id = o.copy_id 
                 INNER JOIN book as b ON b.ISBN = c.ISBN $isbn_filter $title_filter
                 INNER JOIN ecrire as e ON e.ISBN = b.ISBN
