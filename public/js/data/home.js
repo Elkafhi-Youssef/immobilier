@@ -29,7 +29,7 @@ function toGive(data) {
                 <th>Titre</th>
                 <th>Authuer</th>
                 <th>Commande par</th>
-                <th>Date</th>
+                <th>Date de la commande</th>
                 <th  class="d-flex justify-content-center">Decesion</th>
             </tr>
         </thead>
