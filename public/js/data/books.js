@@ -20,10 +20,10 @@ function displayBooks(books) {
         books.forEach(book => {
             outputBuffer+=`
             <tr>
-                <td>${book['ISBN']}</td>
+                <td>${book['isbn']}</td>
                 <td>${book['title']}</td>
-                <td>Auteur</td>
-                <td>Categorie</td>
+                <td>${book['fullname']}</td>
+                <td>${book['cat_name']}</td>
                 <td>12</td>
                 <td>05</td>
             </tr>`;

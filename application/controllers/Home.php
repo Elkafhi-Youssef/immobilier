@@ -16,7 +16,7 @@ class Home extends Controller{
 
     // index : default method 
     public function index(){
-        $this->loadView('home'.DS.'home',[]);
+        $this->loadView('admin'.DS.'books'.DS.'home',[]);
     }
 
 }

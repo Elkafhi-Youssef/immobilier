@@ -19,8 +19,8 @@
                                     <option value="all">Tous</option>
                                     <option value="isbn">ISBN</option>
                                     <option value="title">Titre</option>
-                                    <option value="author">Auteur</option>
-                                    <option value="category">Categorie</option>
+                                    <option value="fullname">Auteur</option>
+                                    <option value="cat_name">Categorie</option>
                                 </select>
                             </div>
                             <div class="col input-group">

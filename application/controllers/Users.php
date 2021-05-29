@@ -104,6 +104,24 @@ class Users extends Controller{
 
              if (empty($data['id_user_err']) && empty($data['password_err'])) {
 
+                if ($userInfo = $this->modelInstance->defineUser($data['id_user']) != false) {
+                    $dt = $this->modelInstance->loginUser($userInfo[0],$userInfo[1],$data['id_user'],$data['password']);
+                    if ($dt) {
+                                        
+                        $_SESSION['user_id'] =$data['id_user'] ;
+                        $_SESSION['user_name'] = $dt['email']; 
+                        echo    $_SESSION['user_id'];                                    
+                         $this->loadView('users'.DS.'home'.DS.'home_user',[]);     
+                    } else {
+                        //password incorrect
+                        
+                        $data['id_user_err'] = 'password or username incorrect';
+                        $data['password_err'] = 'password or username incorrect';
+                        $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+                    }
+                }
+
+
                     if($this->modelInstance->testReg($data['id_user'])=='std'){
                         $dt = $this->modelInstance->loginUser('student','student_id',$data['id_user'],$data['password']);
                                     if ($dt) {

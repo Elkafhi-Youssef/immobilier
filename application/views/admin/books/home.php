@@ -13,19 +13,20 @@
                         <form class="col-4 form-inline navbar-search d-flex justify-content-between">
                                 <div class="row">
                                     <div>
-                                        <select class="form-control border-primary" name="selected" id="select">
+                                        <select class="filter-option form-control border-primary" name="selected" id="select">
                                             <option value="isbn">ISBN</option>
                                             <option value="title">Titre</option>
-                                            <option value="author">Auteur</option>
-                                            <option value="category">Categorie</option>
+                                            <option value="fullname">Auteur</option>
+                                            <option value="first_name">Nom</option>
+                                            <option value="last_name">Prénom</option>
                                         </select>
                                     </div>
                                     <div class="col input-group">
-                                        <input type="text" class="form-control  border-1 border-primary"
+                                        <input type="text" class="filter-input form-control  border-1 border-primary"
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append ">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="search-submit btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>

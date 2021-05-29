@@ -9,6 +9,8 @@ const giveBtn = document.getElementById("to_give");
 const giveBackBtn = document.getElementById("to_give_back");
 const lateBtn = document.getElementById("late");
 const title = document.querySelector('#title');
+const filterInput = document.querySelector('.filter-input');
+const selectOption = document.querySelector('.filter-option');
 
 
 /**
@@ -37,8 +39,8 @@ function toGive(data) {
             <tr>
                 <td>${elm["id"]}</td>
                 <td>${elm["title"]}</td>
-                <td>${elm["author"]}</td>
-                <td>${elm["orderedby"]}</td>
+                <td>${elm["fullname"]}</td>
+                <td>${elm["lname"]} ${elm["fname"]}</td>
                 <td>${elm["date"]}</td>
                 <td class="d-flex justify-content-center">
                     <a class="btn btn-success" href="#"
@@ -146,4 +148,21 @@ giveBackBtn.addEventListener("click", () => {
 
 lateBtn.addEventListener("click", () => {
   getData("http://127.0.0.1/gbests/books/booksLate", booksLate);
+});
+
+// Click event
+document.querySelector('.search-submit').addEventListener('click',()=>{
+    
+  // Get input values
+  let filterValue = filterInput.value;
+  let selectValue = selectOption.value;
+
+  // Check if input is empty or all optios is selected
+  if(filterValue === '' || selectValue == 'all'){
+      getData('http://localhost/gbests/books/toGive',toGive);
+  }else{
+      let urlParams = `${selectValue}/${filterValue}`;
+      // Load and display data
+      getData('http://localhost/gbests/books/toGive/'+urlParams,toGive);
+  }
 });

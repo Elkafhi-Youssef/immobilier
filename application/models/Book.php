@@ -100,13 +100,125 @@ class Book{
      */
 
     public function filterBooks($filter,$values){
+        $isbn_filter = $category_filter = $title_filter = $author_filter = ''; 
+        switch ($filter) {
+            case 'isbn':
+                $isbn_filter = "AND b.$filter LIKE ?";
+                break;
+            case 'cat_name':
+                $category_filter = "AND c.$filter LIKE ?";
+                break;
+            case 'title':
+                $title_filter = "AND b.$filter LIKE ?";
+                break;
+            case 'fullname':
+                $author_filter = "AND a.$filter LIKE ?";
+                break;
+            
+            default:
+                $isbn_filter = $category_filter = $title_filter = $author_filter = ''; 
+                break;
+        }
+
         $this->db->prepareQuery(
         "SELECT b.isbn, b.title, a.fullname, c.cat_name
-        FROM book as b  INNER JOIN existe as e ON b.ISBN = e.ISBN  AND b.$filter LIKE ?
-        INNER JOIN category as c ON e.cat_id = c.cat_id 
-        INNER JOIN ecrire as ec ON b.ISBN = ec.ISBN INNER JOIN author as a ON a.author_id = ec.author_id"
+        FROM book as b  INNER JOIN existe as e ON b.ISBN = e.ISBN  $isbn_filter
+        INNER JOIN category as c ON e.cat_id = c.cat_id $category_filter
+        INNER JOIN ecrire as ec ON b.ISBN = ec.ISBN 
+        INNER JOIN author as a ON a.author_id = ec.author_id $title_filter $author_filter"
         );
         $this->db->execute(["%$values[0]%"]);
         return $this->db->getResult();
     }
+
+    /**
+     * Get ordred books
+     * @param string $userTable 
+     * @param string $userOrderTable
+     * @param string $filter isbn|category|title|author
+     * @param array $values 
+     * @return array
+     * 
+     */
+
+    public function getOrdredBooks($userTable,$userOrderTable,$filter = null,$value){
+        // user id
+        $id = $userTable.'_id';
+        // attributes
+        $attrs = "o.copy_id as id, c.ISBN as isbn, b.title, u.last_name as fname, u.first_name as lname, o.order_date as date, a.fullname";
+        
+        if(is_null($filter)){
+            $query = "SELECT $attrs
+                FROM $userTable as u
+                INNER JOIN $userOrderTable as o ON o.$id = u.$id 
+                INNER JOIN `copy` as c ON c.copy_id = o.copy_id 
+                INNER JOIN book as b ON b.ISBN = c.ISBN
+                INNER JOIN ecrire as e ON e.ISBN = b.ISBN
+                INNER JOIN author as a ON e.author_id = a.author_id";
+
+            $this->db->prepareQuery($query);
+            $this->db->execute();
+        }else{
+
+            // prepare filter
+            $isbn_filter = $category_filter = $title_filter = $author_filter = $fname_filter = $lname_filter = ''; 
+            switch ($filter) {
+                case 'isbn':
+                    $isbn_filter = "AND b.$filter LIKE ?";
+                    break;
+                case 'title':
+                    $title_filter = "AND b.$filter LIKE ?";
+                    break;
+                case 'fullname':
+                    $author_filter = "AND a.$filter LIKE ?";
+                    break;
+                
+                case 'first_name':
+                    $fname_filter = "AND u.$filter LIKE ?";
+                    break;
+                
+                case 'last_name':
+                    $lname_filter = "AND u.$filter LIKE ?";
+                    break;    
+                
+                default:
+                    $isbn_filter = $category_filter = $title_filter = $author_filter = ''; 
+                    break;
+            }
+
+            // prepare query
+            $query = "SELECT $attrs
+                FROM $userTable as u 
+                INNER JOIN $userOrderTable as o ON o.$id = u.$id $fname_filter $lname_filter
+                INNER JOIN `copy` as c ON c.copy_id = o.copy_id 
+                INNER JOIN book as b ON b.ISBN = c.ISBN $isbn_filter $title_filter
+                INNER JOIN ecrire as e ON e.ISBN = b.ISBN
+                INNER JOIN author as a ON e.author_id = a.author_id $author_filter";
+
+            $this->db->prepareQuery($query);
+            
+            // execute query
+            $this->db->execute(["%$value%"]);
+        }
+        return $this->db->getResult();
+    }
+
+    /**
+     * 
+     * 
+     */
+
+     public function getAllOrdredBooks($filter,$value){
+         $orders = [];
+         
+         $teacherOrders = $this->getOrdredBooks('teacher','tea_order',$filter,$value);
+         $orders = array_merge($orders,$teacherOrders);
+        // $studentOrders = $this->getOrdredBooks('student','std_order',$filter = null,$values);
+        // $orders = array_merge($orders,$studentOrders);
+        $employee = $this->getOrdredBooks('employe','emp_order',$filter,$value);
+        $orders = array_merge($orders,$employee);
+
+         return $orders;
+     }
+
 }

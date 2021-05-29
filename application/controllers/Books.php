@@ -10,7 +10,7 @@
         }
         //  function index call of all books
         public function index(){
-            $this->loadView('books'.DS.'books_list',[]);
+            $this->loadView('admin'.DS.'books'.DS.'books_list',[]);
 
         }
 
@@ -67,10 +67,10 @@
                     ];}       
                 
                 // Reload view with alert 
-                $this->loadView('books'.DS.'books_addbook',$alert);
+                $this->loadView('admin'.DS.'books'.DS.'books_addbook',$alert);
                 unset($_POST);
                 unset($bookInfo);
-            }else  $this->loadView('books'.DS.'books_addbook',[]);
+            }else  $this->loadView('admin'.DS.'books'.DS.'books_addbook',[]);
         }
 
         /**
@@ -100,29 +100,7 @@
          * 
          */
         public function toGive($filterBy = null,$data = []){
-            $data = [
-                [
-                    "id" => 1,
-                    "title" => "Javascript algorithms",
-                    "author" => "G.Hamza",
-                    "orderedby"=> "elkafhi youssef",
-                    "date" => "2011/04/25"
-                ],
-                [
-                    "id" => 2,
-                    "title" => "Cpp",
-                    "author" => "G.Hamza",
-                    "orderedby"=> "elkafhi youssef",
-                    "date" => "2011/04/25"
-                ],
-                [
-                    "id" => 3,
-                    "title" => "PHP Ajax",
-                    "author" => "G.Hamza",
-                    "orderedby"=> "elkafhi youssef",
-                    "date" => "2011/04/25"
-                ]
-            ];
+            $data = $this->modelInstance->getAllOrdredBooks($filterBy,$data);
             $this->jsonPrepare($data);
         }
 
