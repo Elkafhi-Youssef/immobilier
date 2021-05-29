@@ -155,11 +155,7 @@
 		 */
 
 		public function getRow(){
-
-			return $this->sth->fetch(PDO::FETCH_OBJ);
-
 			return $this->sth->fetch(PDO::FETCH_ASSOC);
-
 		}
 
 		/**
