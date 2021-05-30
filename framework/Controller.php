@@ -55,4 +55,22 @@
       echo json_encode($data);
       exit;
     }
+
+
+
+
+
+
+
+
+
+
+
+     public function redirect($path)
+
+    {
+      if (!empty($path)) {
+        header('location:'.$path);
+      }
+    }
   }

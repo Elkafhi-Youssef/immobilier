@@ -1,6 +1,6 @@
 <?php
 
-use function PHPSTORM_META\type;
+
 
 class Users extends Controller{
 
@@ -76,7 +76,7 @@ class Users extends Controller{
         
         
  
-        public function logInUser(){
+        public function login(){
            
             if (($_SERVER['REQUEST_METHOD'] == 'POST') ){
 
@@ -88,84 +88,46 @@ class Users extends Controller{
                 'id_user_err' => '',  
                 'password_err' => ''
             ]; 
-            if (empty($data['id_user']) &&(empty($data['password']))) {
-                $data['id_user_err'] = 'Please fill your username';
-                $data['password_err'] = 'Please fill your password';
-            }
-            else if(empty($data['id_user'])){
-                $data['id_user_err'] = 'Please fill your username';
-            }
-            else if(empty($data['password'])) {
-                $data['password_err'] = 'Please fill your password';
-            }
+             
+            if (empty($data['id_user'])){$data['id_user_err'] = 'Please fill your username';} 
+               
+            
+             if(empty($data['password'])){$data['password_err'] = 'Please fill your password';} 
+             if (empty($data['id_user']) && empty($data['password'])){$data['id_user_err'] = 'Please fill your username and password';
+                $data['password_err'] = 'Please fill your username and password'; }
+             
+            
 
 
 
              if (empty($data['id_user_err']) && empty($data['password_err'])) {
-
-                if ($userInfo = $this->modelInstance->defineUser($data['id_user']) != false) {
-                    $dt = $this->modelInstance->loginUser($userInfo[0],$userInfo[1],$data['id_user'],$data['password']);
-                    if ($dt) {
-                                        
-                        $_SESSION['user_id'] =$data['id_user'] ;
-                        $_SESSION['user_name'] = $dt['email']; 
-                        echo    $_SESSION['user_id'];                                    
-                         $this->loadView('users'.DS.'home'.DS.'home_user',[]);     
-                    } else {
-                        //password incorrect
+                $info = $this->modelInstance->defineUser($data['id_user']);
+                    if($info != false){
                         
-                        $data['id_user_err'] = 'password or username incorrect';
-                        $data['password_err'] = 'password or username incorrect';
-                        $this->loadView('users'.DS.'home'.DS.'login_user',$data);
-                    }
-                }
-
-
-                    if($this->modelInstance->testReg($data['id_user'])=='std'){
-                        $dt = $this->modelInstance->loginUser('student','student_id',$data['id_user'],$data['password']);
+                        $dt = $this->modelInstance->loginUser($info[0],$info[1],$info[2],$data['password']);
+                        
                                     if ($dt) {
-                                        
+                                        if(!isset($_SESSION)) 
+                                        { 
+                                            session_start(); 
+                                        } 
                                         $_SESSION['user_id'] =$data['id_user'] ;
-                                        $_SESSION['user_name'] = $dt['email']; 
-                                        echo    $_SESSION['user_id'];                                    
-                                         $this->loadView('users'.DS.'home'.DS.'home_user',[]);     
+                                        $_SESSION['user_name'] = $dt['email'];
+                                        $this->redirect(URLROOT.'/Books/getbooks');
+                                             
                                     } else {
                                         //password incorrect
-                                        
                                         $data['id_user_err'] = 'password or username incorrect';
                                         $data['password_err'] = 'password or username incorrect';
                                         $this->loadView('users'.DS.'home'.DS.'login_user',$data);
                                     }
+                    } else{
+                        $this->loadView('users'.DS.'home'.DS.'login_user',$data);
                     }
-                     else if($this->modelInstance->testReg($data['id_user'])==2){
-                         $dt = $this->modelInstance->loginUser('teacher','teacher_id',$data['id_user'],$data['password']);    
-                                if($dt){
-                                        $_SESSION['user_id'] = $dt['teacher_id'];
-                                        $_SESSION['user_name'] = $dt['email'];
-                                        $this->loadView('users'.DS.'home'.DS.'home_user',[]);
-                                }else {
-                                    //password incorrect
-                                    $data['id_user_err'] = 'password or username incorrect';
-                                    $data['password_err'] = 'password or username incorrect';
-                                    $this->loadView('users'.DS.'home'.DS.'login_user',$data);
-                                }
-                        }elseif($this->modelInstance->testReg($data['id_user'])==3){
-                            $dt = $this->modelInstance->loginUser('employe','empl_id',$data['id_user'],$data['password']);    
-                            if($dt){
-                                    $_SESSION['user_id'] = $dt['emp_id'];
-                                    $_SESSION['user_name'] = $dt['email'];
-                                    $this->loadView('users'.DS.'home'.DS.'home_user',[]);
-                            }else {
-                                //password incorrect
-                                $data['id_user_err'] = 'password or username incorrect';
-                                $data['password_err'] = 'password or username incorrect';
-
-                                $this->loadView('users'.DS.'home'.DS.'login_user',$data);
-                            }
-                        }                       
+                                       
                     }else{
                         $this->loadView('users'.DS.'home'.DS.'login_user',$data); 
-                    } 
+                    }
         }else{
             $data = [
                 'id_user' => '',
