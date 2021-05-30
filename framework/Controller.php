@@ -56,19 +56,12 @@
       exit;
     }
 
-
-
-
-
-
-
-
-
-
-
-     public function redirect($path)
-
-    {
+    /**
+     * Redirect method
+     * @param $path to redirect to
+     * 
+     */
+     public function redirect($path){
       if (!empty($path)) {
         header('location:'.$path);
       }
