@@ -45,12 +45,16 @@
          public function defineUser($userLogin){
             if(preg_match("/^[a-z][0-9]/i", $userLogin)){
                 return ['student','student_id',$userLogin];
-            } elseif(preg_match("teacher patern", $userLogin)){
+            } 
+            elseif(preg_match("/^[^0-9][_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.uca.[a-z]{2,3})$/", $userLogin)){
                 return ['teacher','email',$userLogin];
-            }elseif(preg_match("/s[.][A-Z]/i", $userLogin)){
-                $value = ltrim(ltrim($userLogin,'s'),'.');
+            }elseif(preg_match("/^s.[^0-9][_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/
+            ", $userLogin)){
+               
+                $value = ltrim(ltrim(strtolower($userLogin),'s'),'.');
                 return ['employe','email',$value]; 
-            }elseif(preg_match("/admin[.][A-Z]/i", $userLogin)){
+             }elseif(preg_match("/^admin.[^0-9][_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/
+            ", $userLogin)){
                 $value = ltrim(ltrim($userLogin,'admin'),'.');
                 return ['admin','email',$value];  
             }              

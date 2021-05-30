@@ -37,9 +37,10 @@
     <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
+  
     <div class=" d-flex justify-content-center">
       <main class="form-signin container d-flex justify-content-center">
-        <form class="w-50" action="<?=URLROOT.DS.'Users'.DS.'logInUser' ?>" method="POST" >
+        <form class="w-50" action="<?=URLROOT.DS.'Users'.DS.'login' ?>" method="POST" >
         
           <img class="mb-4" src="<?php echo URLROOT.DS.'public/images/ests.png'; ?>" alt="" width="72" height="57">
           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>

@@ -23,6 +23,10 @@
     </div>
 </div>
 
+<?php
+// Starting session
+
+?>
 <section class=" d-flex justify-content-center mt-5" style="background-color: #F0F2F5;">
     <!-- start group cards  -->
     <div class=" row mt-5 mb-5 justify-content-around container ">
@@ -33,13 +37,28 @@
             <div class="card-body ">
                 <h4 class="text-center card-title  "><?=$data['title'];?></h4>
                 <div class="d-flex justify-content-around">
-                    <span class="">Categorie</span>
-                    <span>Auteur</span>
+                    <span class=""><?=$data['cat_name'];?></span>
+                    <span><?=$data['fullname'];?></span>
                 </div>
                 <hr class="border-1">
                 <div class="text-center">
-                    <a href="<?=URLROOT.DS.'Users'.DS.'commandUser/'.$_SESSION['user_id'].'/2'?>" class="btn btn-primary mt-2  ">Commander ici</a>
+                    <a href="?=URLROOT.DS.'Users'.DS.'commandUser/'.$_SESSION['user_id'].'/2'?" class="btn btn-primary mt-2  ">Commander ici</a>
+                   
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
         <?php } ?>

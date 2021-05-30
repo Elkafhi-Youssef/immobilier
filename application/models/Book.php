@@ -86,9 +86,11 @@ class Book{
             INNER JOIN category as c ON e.cat_id = c.cat_id 
             INNER JOIN ecrire as ec ON b.ISBN = ec.ISBN INNER JOIN author as a ON a.author_id = ec.author_id'
         );
-
+        
         $this->db->execute();
-        return $this->db->getResult(); 
+         return $this->db->getResult();
+       
+
     }
 
     /**
