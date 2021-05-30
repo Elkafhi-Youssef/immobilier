@@ -190,7 +190,7 @@
 
             if ($data) {
 
-                    $this->loadView('users'.DS.'home'.DS.'home_user',$data);
+                    $this->loadView('users'.DS.'home_user',$data);
                
                
         }

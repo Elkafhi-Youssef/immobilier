@@ -73,4 +73,17 @@
         header('location:'.$path);
       }
     }
+
+
+    // *
+    // *
+    // *
+    // *
+    // *
+
+    public function startSession()
+    {
+      session_start();
+      
+    }
   }

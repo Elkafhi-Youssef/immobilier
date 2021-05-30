@@ -107,13 +107,12 @@ class Users extends Controller{
                         $dt = $this->modelInstance->loginUser($info[0],$info[1],$info[2],$data['password']);
                         
                                     if ($dt) {
-                                        if(!isset($_SESSION)) 
-                                        { 
-                                            session_start(); 
-                                        } 
+                                         
                                         $_SESSION['user_id'] =$data['id_user'] ;
                                         $_SESSION['user_name'] = $dt['email'];
+                                        $this->startSession();
                                         $this->redirect(URLROOT.'/Books/getbooks');
+                                        
                                              
                                     } else {
                                         //password incorrect
@@ -122,11 +121,11 @@ class Users extends Controller{
                                         $this->loadView('users'.DS.'home'.DS.'login_user',$data);
                                     }
                     } else{
-                        $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+                        $this->loadView('users'.DS.'login_user',$data);
                     }
-                                       
+                       
                     }else{
-                        $this->loadView('users'.DS.'home'.DS.'login_user',$data); 
+                        $this->loadView('users'.DS.'login_user',$data); 
                     }
         }else{
             $data = [
@@ -136,7 +135,7 @@ class Users extends Controller{
                 'password_err' => ''
             ]; 
 
-            $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+            $this->loadView('users'.DS.'login_user',$data);
         }
     }        
 }
