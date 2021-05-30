@@ -204,7 +204,9 @@ class Book{
     }
 
     /**
-     * 
+     * Get all ordred books 
+     * @param string $filter : get ordred books based on this filter
+     * @param string $value
      * 
      */
 
