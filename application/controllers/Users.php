@@ -119,14 +119,14 @@ class Users extends Controller{
                                         //password incorrect
                                         $data['id_user_err'] = 'password or username incorrect';
                                         $data['password_err'] = 'password or username incorrect';
-                                        $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+                                        $this->loadView('users'.DS.'login_user',$data);
                                     }
                     } else{
-                        $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+                        $this->loadView('users'.DS.'login_user',$data);
                     }
                                        
                     }else{
-                        $this->loadView('users'.DS.'home'.DS.'login_user',$data); 
+                        $this->loadView('users'.DS.'login_user',$data); 
                     }
         }else{
             $data = [
@@ -136,7 +136,7 @@ class Users extends Controller{
                 'password_err' => ''
             ]; 
 
-            $this->loadView('users'.DS.'home'.DS.'login_user',$data);
+            $this->loadView('users'.DS.'login_user',$data);
         }
     }        
 }
