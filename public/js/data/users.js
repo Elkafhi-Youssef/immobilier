@@ -34,7 +34,7 @@ let searchIn = 1; // 1 : for students , 2 : for employs ...
  * 
  */
 function displayStudents(data) {
-  title.innerHTML = "Etudiants";
+  title.innerHTML = "List des clients";
   optionId.value = 'student_id';
   let output = '';  
   tableHead.innerHTML = `<tr>

@@ -35,14 +35,14 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">
-                    EST
+                <div class="sidebar-brand-text mx-2">
+                    IMMOBILIER
                 </div>
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-book"></i> 
+                    <i class="fas fa-home"></i> 
                 </div>
-                <div class="sidebar-brand-text mx-3">
-                    SAFI
+                <div class="sidebar-brand-text mx-2">
+                    SASI
                 </div>
             </a>
 
@@ -61,19 +61,27 @@
  
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT.DS.'books'.DS.'index' ?>">
+                <a class="nav-link" href="<?= URLROOT.DS.'Rendez'.DS.'index' ?>">
                     <i class="fas fa-book"></i>
-                    <span>Les livres</span></a>
+                    <span>Les rendez-vous</span></a>
             </li>
 
             <!-- Divider-->
             <hr class="sidebar-divider my-0">
- 
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= URLROOT.DS.'Clients'.DS.'index' ?>">
+                    <i class="fas fa-users"></i>
+                    <span>les clients</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+    
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= URLROOT.DS.'Users'.DS.'index' ?>">
-                    <i class="fas fa-user"></i>
-                    <span>Les utilisateurs</span></a>
+                    <i class="fas fa-building"></i>
+                    <span>Les immobiliers</span></a>
             </li>
 
             <!-- Divider-->
@@ -82,8 +90,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-chart-pie"></i>
-                    <span>Statistiques</span></a>
+                    <i class="fas fa-handshake"></i>
+                    <span>les enpruntes</span></a>
             </li>
             
             <!-- Divider -->

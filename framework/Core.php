@@ -52,9 +52,9 @@ class Core{
   
   public function getRequestedUrl(){
     // check if loged in
-    if(isset($_SESSION['id']))
+    // if(isset($_SESSION['user_id']))
     return isset($_SERVER['PATH_INFO']) ? explode('/',trim($_SERVER['PATH_INFO'],'/')) : ['home','index'];
-    return ['users','login'];
-  }
+    // return ['users','login'];
+   }
 
 }

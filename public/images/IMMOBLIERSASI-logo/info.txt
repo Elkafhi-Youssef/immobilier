@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Fondamento-Regular
+font link: https://fonts.google.com/specimen/Fondamento
+font author: Astigmatic
+font author site: http://www.astigmatic.com/
+Slogan Font: Snickles.ttf
+
+icon designer: Juan Pablo Bravo
+icon designer link: /bravo
+        
+{"bg":"#D2EAF5","icon-gradient-0":"#000A68","icon-gradient-1":"#00C4EE","font":"#022239","slogan":"#16364d"}
+      

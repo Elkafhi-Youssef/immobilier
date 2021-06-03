@@ -74,9 +74,5 @@
     // *
     // *
 
-    public function startSession()
-    {
-      session_start();
-      
-    }
+    
   }

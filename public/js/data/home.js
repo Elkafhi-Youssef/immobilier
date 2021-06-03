@@ -21,7 +21,7 @@ const selectOption = document.querySelector('.filter-option');
  * 
  */
 function toGive(data) {
-  title.innerHTML = "A donner";  
+  title.innerHTML = "Livres réservés";  
   let output = `
         <thead>
             <tr>
