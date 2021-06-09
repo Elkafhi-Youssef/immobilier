@@ -13,7 +13,6 @@
             $this->loadView('admin'.DS.'demande'.DS.'demande',[]);
 
         }
-
         public function addbook($params = []){
 
             // alert for form submission
@@ -64,137 +63,66 @@
                         'err' => false,
                         'msg' => 'Operation done successfully!',
                         'class-name' => 'alert alert-success'
-                    ];}       
-                
+                    ];}                       
                 // Reload view with alert 
                 $this->loadView('admin'.DS.'books'.DS.'books_addbook',$alert);
                 unset($_POST);
                 unset($bookInfo);
             }else  $this->loadView('admin'.DS.'books'.DS.'books_addbook',[]);
         }
-
-        /**
-         * 
-         * Get books based on a given filter  or all books if no filter specified
-         *  
-         * @param string $filterBy isbn|category|title|author
-         * @param string $params filter value
-         * 
-         */
-
-         public function getBooksList($filterBy = null,$params = []){
-            // Convert params to array
-            if(!is_null($filterBy)){
-                $params = explode('/',trim($params,'/'));
-                $books = $this->modelInstance->filterBooks($filterBy,$params);
-            }else {
-                $books = $this->modelInstance->getBooks($filterBy,$params);
-            }
-
-            $this->jsonPrepare($books);
-        }
-
-        /**
-         * 
-         * Ordred books
-         * 
-         */
-        public function toGive($filterBy = null,$data = []){
-            $data = $this->modelInstance->getAllOrdredBooks($filterBy,$data);
-            $this->jsonPrepare($data);
-        }
-
-        /**
-         * 
-         * Books should be given back
-         * 
-         */
-        public function toGiveBack($filterBy = null,$data = []){
-            $data = [
-                [
-                    "id" => 1001,
-                    "title" => "JavaScript alogorithems",
-                    "user_id" => "152",
-                    "user_name"=> "Elkafhi Youssef",
-                    "termination_date" => "2011/04/25",
-                    "left_time" => 12
-                ],
-                [
-                    "id" => 93,
-                    "title" => "PHP Ajax",
-                    "user_id" => "1550",
-                    "user_name"=> "Gassai Hamza",
-                    "termination_date" => "2011/04/25",
-                    "left_time" => 15
-                ],
-                [
-                    "id" => 2005,
-                    "title" => "Carbone 17",
-                    "user_id" => "1521",
-                    "user_name"=> "Beddiaf amal",
-                    "termination_date" => "2011/04/25",
-                    "left_time" => 20
-                ]
-            ];
-            $this->jsonPrepare($data);
-        }
-
-        /**
-         * 
-         * Books should be given back and late
-         * 
-         */
-        public function booksLate($filterBy = null,$data = []){
-            $data = [
-                [
-                    "id" => 1001,
-                    "title" => "JavaScript alogorithems",
-                    "user_id" => "152",
-                    "user_name"=> "Elkafhi Youssef",
-                    "termination_date" => "2011/04/25",
-                    "duration_late" => 12,
-                    "user_email" => "user@gmail.com",
-                    "user_phone" => "+212 686321458"
-                ],
-                [
-                    "id" => 93,
-                    "title" => "PHP Ajax",
-                    "user_id" => "1550",
-                    "user_name"=> "Gassai Hamza",
-                    "termination_date" => "2011/04/25",
-                    "duration_late" => 15,
-                    "user_email" => "user@gmail.com",
-                    "user_phone" => "+212 686321458"
-                ],
-                [
-                    "id" => 2005,
-                    "title" => "Carbone 17",
-                    "user_id" => "1521",
-                    "user_name"=> "Beddiaf amal",
-                    "termination_date" => "2011/04/25",
-                    "duration_late" => 20,
-                    "user_email" => "user@gmail.com",
-                    "user_phone" => "+212 686321458"
-                ]
-            ];
-            $this->jsonPrepare($data);
-        }
-
-
-
-
-        // get books and display in home 
-        public function getbooks( )
+        // function get data of visit (date ,time) 
+        public function adddemande()
         {
-            $data = $this->modelInstance->getBooks();
+           
+        
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    
+                $data = [
+                    'date'=> $_POST['date'],
+                    'time' => $_POST['time'],
+                    'user_id' => $_POST['user_id'],
+                    'id_immobilier' => $_POST['id_immobilier'],                 
+                ];
+                $exist = $this->modelInstance->demandExist($data['user_id'],$data['id_immobilier']);
+                if($exist){
+                    $_SESSION['status'] = 'votre demande déja existe';
+                   $this->redirect(URLROOT.'/Immobiliers/getAllImmob');
+                }else{
+                    $dt = $this->modelInstance->addDemande('demande',['date_visite','temps_visite','id_client','id_immobilier'],[$data['date'],$data['time'],$data['user_id'],$data['id_immobilier']]);
+                    if($dt){
+                        $_SESSION['status'] = 'votre demande  passe bien';
+                        $this->redirect(URLROOT.'/Immobiliers/getAllImmob');
+                    }else{
+                        $_SESSION['status'] = 'votre demande ne passe pas';
+                        $this->redirect(URLROOT.'/Immobiliers/getAllImmob');
+                    }
 
-            if ($data) {
+                }
 
-                    $this->loadView('users'.DS.'home_user',$data);
-               
-               
+
+
+
+            }
         }
+
+      
+           
+           
+        
+
+        
+    
+
        
+       
+
+       
+        
+
+
+
+
          
     }
-}

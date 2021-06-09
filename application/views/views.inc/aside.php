@@ -51,9 +51,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT.DS.'home'.DS.'index' ?>">
+                <a class="nav-link" href="<?= URLROOT.DS.'Demandes'.DS.'index' ?>">
                     <i class="fas fa-home"></i>
-                    <span>Accueil</span></a>
+                    <span>Accueil(demandes)</span></a>
             </li>
 
             <!-- Divider-->
@@ -72,6 +72,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= URLROOT.DS.'Clients'.DS.'index' ?>">
+              
                     <i class="fas fa-users"></i>
                     <span>les clients</span></a>
             </li>
@@ -79,7 +80,7 @@
     
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT.DS.'Users'.DS.'index' ?>">
+                <a class="nav-link" href="<?= URLROOT.DS.'Immobiliers'.DS.'index' ?>">
                     <i class="fas fa-building"></i>
                     <span>Les immobiliers</span></a>
             </li>

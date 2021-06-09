@@ -17,6 +17,7 @@ class Home extends Controller{
     // index : default method 
     public function index(){
         
+        // $this->loadView('home',[]);
         $this->loadView('home',[]);
     }
 

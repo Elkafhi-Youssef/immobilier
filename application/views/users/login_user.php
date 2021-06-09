@@ -13,7 +13,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="bootstrap.min1.css" />
+
 <link href="<?php echo URLROOT.DS.'public/bootstrap/bootstrap.min1.css'; ?>" rel="stylesheet">
 
     <style>
@@ -43,23 +43,23 @@
         <form class="w-50" action="<?=URLROOT.DS.'Users'.DS.'login' ?>" method="POST" >
         
           <img class="mb-4" src="<?php echo URLROOT.DS.'public/images/ests.png'; ?>" alt="" width="72" height="57">
-          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+          <h1 class="h3 mb-3 fw-normal">CONNECTEZ-VOUS</h1>
 
           <div class="form-floating mb-4">
-            <input type="text" class="form-control" name="id_user"  value="<?php echo $data['id_user'] ?>" id="floatingInput" placeholder="Password" >
-            <span class="text-danger text-start"><?php echo $data['id_user_err'] ?></span>
-            <label for="floatingInput">Username</label>
+            <input type="email" class="form-control" name="email"  value="<?php echo $data['email']; ?>" id="floatingInput" placeholder="Password" >
+            <span class="text-danger text-start"><?php echo $data['email_err'] ?></span>
+            <label for="floatingInput">Email</label>
           </div>
           <div class="form-floating mb-4">
-            <input type="password"  name="password"  value="<?php echo $data['password'] ?>" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password"  name="password"  value="<?php echo $data['password']; ?>" class="form-control" id="floatingPassword" placeholder="Password">
             <span class="text-danger text-start"><?php echo $data['password_err']?></span> 
-            <label for="floatingPassword">Password</label>
+            <label for="floatingPassword">Mot de passe</label>
           </div>
 
           <div class="checkbox mb-3">
           
           </div>
-          <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit">Sign in</button>
+          <button class="w-100 btn btn-lg $blue-100" name="submit" type="submit">CONNECTEZ-VOUS</button>
           
         </form>
       </main>

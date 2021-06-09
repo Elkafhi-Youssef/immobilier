@@ -11,10 +11,14 @@
     <meta name="generator" content="Hugo 0.83.1" />
     <title>Immobliler safi</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" >
     
     <link rel="stylesheet" href="/fontawesome-free-5.15.3-web/css/all.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"> -->
+
+    <link href="<?php echo URLROOT.DS.'public/css/bootstrap.min22.css'; ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo URLROOT.DS.'public/css/style.css'; ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo URLROOT.DS.'public/fontawesome-free-5.15.3-web/css/all.css'; ?>" rel="stylesheet" >
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -55,10 +59,10 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link " href="#">Login</a>
+              <a class="nav-link " href="<?php echo URLROOT.DS.'Users'.DS.'login'?>">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="#">Sing in</a>
+              <a class="nav-link " href="<?php echo URLROOT.DS.'Users'.DS.'register'?>">Sing in</a>
             </li>
           </ul>
           
@@ -89,13 +93,13 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="/cover.png" class="d-block w-100" alt="...">
+        <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class="d-block w-100 " style=";" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="/cover.png" class="d-block w-100" alt="...">
-        </div>
+        <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class="d-block w-100 " style=";" alt="...">     
+         </div>
         <div class="carousel-item">
-          <img src="/cover.png" class="d-block w-100" alt="...">
+        <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class="d-block w-100 " style=";" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

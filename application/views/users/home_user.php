@@ -1,8 +1,22 @@
 
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'user.nav.php'; ?>
  
- <!-- slid start -->
+ 
+
+ 
+ 
+<!-- slid start -->
+
  <div class="container mt-5 p-0" >
+ <div class="container w-50"> 
+ <!-- message for if add demande or no  -->
+    <?php if (isset($_SESSION['status'])) { ?>
+        <div class=" alert alert-success" role="alert">
+            <?php echo $_SESSION['status'];  ?>
+        </div>
+        <?php unset($_SESSION['status']); ?>
+    <?php  } ?>
+ </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -18,7 +32,7 @@
           <img src="<?php echo URLROOT.DS.'public/images/ests.png';?>" class="d-block w-100 border shadow" style="height: min-content;" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="<?php echo URLROOT.DS.'public/images/IMMOBILIERSASI-logo/profile.png';?>" class="d-block w-100" alt="...">
+          <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class="d-block w-100" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -43,9 +57,9 @@
             <h1 class="fw-light">Veuillez chisi votre choit</h1>
             
             <p>
-              <a href="#" class="btn btn-primary my-3">A vendre</a>
-              <a href="#" class="btn btn-primary my-3">A louer</a>
-              <a href="#" class="btn btn-primary my-3">A ch i7aja</a>
+              <a href="#" class="btn btn-outline-primary my-3">A vendre</a>
+              <a href="#" class="btn btn-outline-primary my-3">A louer</a>
+              
             </p>
           </div>
         </div>
@@ -56,217 +70,31 @@
       <section class="d-flex justify-content-center" >
        <!-- father card  -->
         <div class=" container row mt-5 d-flex justify-content-center">
-          
+          <?php foreach($data as $data){?>
           <!-- start card  -->
           <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
               <div class="" style="height: 200px;">
-              <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
+              <?php $arr = explode(" ", $data['img']); ?>
+              <img src="<?php echo URLROOT . DS . 'public/upload/' . $arr[0]; ?>" class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"alt="...">
               </div>
               <div class="card-body  p-0 m-2 ">
-                <h4 class="card-title  ">Appartement</h4>
+                <h4 class="card-title  "><?php echo $data['type_immobilier']; ?></h4>
                 <div class="row">
-                  <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                  <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;"><?php echo $data['description']; ?></p>
               </div>
               <hr class="border-1">
                 <div class="text-center d-flex ">
-                  <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
+                  <h6 class="mt-3 border-bottom border-primary" style="font-size: larger;font-family: 'Courier New', Courier, monospace;"><?php echo $data['prix']; ?><span class="p-2 ">DH</span></h6>
                   <div class="w-100 d-flex justify-content-end me-0">
-                    <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
+                    <a href="<?=URLROOT.DS.'Immobiliers'.DS.'showimmobilier'.DS.$data['id_immobilier']?>" class="btn btn-outline-primary mt-2 me-1 ms-4 px-4  ">voir</a>
                     <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
                   </div>
                 </div>
               </div>
             </div>
             <!-- card end  -->
-            <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?> " class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?> " class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?> " class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?> " class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?>" class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?> " class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/cover.png';?> " class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
-          <!-- start card  -->
-          <div class="m-3  card col-4 p-0 " style="width: 18rem;height:auto ;">
-            <div class="" style="height: 200px;">
-            <img src="<?php echo URLROOT.DS.'public/images/ests.png';?>" class=" card-img-top  h-100 w-100 of" style="object-fit: cover;"   alt="...">
-            </div>
-            <div class="card-body  p-0 m-2 ">
-              <h4 class="card-title  ">Appartement</h4>
-              <div class="row">
-                <p style="font-size: 13px; font-family: 'Courier New', Courier, monospace;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-            </div>
-            <hr class="border-1">
-              <div class="text-center d-flex ">
-                <h6 class="mt-3" style="font-size: larger;font-family: 'Courier New', Courier, monospace;">prix</h6>
-                <div class="w-100 d-flex justify-content-end me-0">
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 me-1 px-4  ">voir</a>
-                  <a href="immobilier.html" class="btn btn-outline-primary mt-2 px-4 me-3 ">visit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- card end  -->
+            <?php } ?>
+            
         </div>
         <!-- father card end  -->
         

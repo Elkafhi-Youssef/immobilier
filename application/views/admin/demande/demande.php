@@ -55,9 +55,9 @@
                                         <tr>
                                             <th>Nom Prénom</th>
                                             <th>Type Immobilier</th>
-                                            <th>Authuer</th>
-                                            <th>Date de visite</th>
-                                            <th>ID immoblier</th>
+                                            <th>Date/Heur</th>
+                                            <th>.....</th>
+
                                             <th>Décision</th>
                                             
                                         </tr>

@@ -5,9 +5,9 @@ import { getData } from "./request.js";
  */
 
 const tableBody = document.querySelector(".table_body");
-const giveBtn = document.getElementById("to_give");
-const giveBackBtn = document.getElementById("to_give_back");
-const lateBtn = document.getElementById("late");
+
+
+
 const title = document.querySelector('#title');
 const filterInput = document.querySelector('.filter-input');
 const selectOption = document.querySelector('.filter-option');
@@ -21,19 +21,7 @@ const selectOption = document.querySelector('.filter-option');
  * 
  */
 function toGive(data) {
-  title.innerHTML = "Livres réservés";  
-  let output = `
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Authuer</th>
-                <th>Commande par</th>
-                <th>Date de la commande</th>
-                <th  class="d-flex justify-content-center">Decesion</th>
-            </tr>
-        </thead>
-    `;
+  title.innerHTML = "Liste de demande";  
   data.forEach((elm) => {
     output += `
             <tr>
@@ -138,17 +126,10 @@ function booksLate(data) {
  */
 
 window.onload = getData("http://127.0.0.1/gbests/books/togive", toGive);
-giveBtn.addEventListener("click", () => {
-  getData("http://127.0.0.1/gbests/books/togive", toGive);
-});
 
-giveBackBtn.addEventListener("click", () => {
-  getData("http://127.0.0.1/gbests/books/toGiveBack", toGiveBack);
-});
 
-lateBtn.addEventListener("click", () => {
-  getData("http://127.0.0.1/gbests/books/booksLate", booksLate);
-});
+
+
 
 // Click event
 document.querySelector('.search-submit').addEventListener('click',()=>{

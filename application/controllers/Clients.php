@@ -6,13 +6,89 @@ class Clients extends Controller{
 
         public function __construct(){
             // load & instantiate students model
-            $this->setModelInstance('client');
+            $this->setModelInstance('Client');
         }
 
         public function index(){
             $this->loadView('admin'.DS.'clients'.DS.'clients',[]);
+           
         }
 
+        // add client from dmin 
+
+        public function register()
+        {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    
+                $data = [
+                    'CIN'=> $_POST['CIN'],
+                    'name' => $_POST['name'],
+                    'email' => $_POST['email'],
+                    'tele' => $_POST['tele'],
+                    'adresse'=> $_POST['adresse'],
+                    'password' => $_POST['password'],
+                    'CIN_err' => '',
+                    'name_err' => '',
+                    'email_err' => '',
+                    'tele_err' => '',
+                    'adresse_err' => '',
+                    'password_err' => '',
+                ];
+
+                echo  $_POST['CIN'].$_POST['name'].$_POST['email'].$_POST['tele'].$_POST['adresse'],$_POST['password'];
+                if (empty($data['CIN'])) $data['CIN_err'] = 'Please fill your CIN';
+                if (empty($data['name'])) $data['name_err'] = 'Please fill your name';
+                if (empty($data['email'])) $data['email_err'] = 'Please fill your email';
+                if (empty($data['tele'])) $data['tele_err'] = 'Please fill your telehone';
+                if (empty($data['adresse'])) $data['adresse_err'] = 'Please fill your adresse';               
+                if (empty($data['password'])) $data['password_err'] = 'Please fill your password';
+                // if ($data['password'] !== $data['confirm-password']) $data['confirm-password_err'] = "passwords don't match";
+                // if (empty($data['confirm-password'])) $data['confirm-password_err'] = 'Please fill your confirm password';
+                //check if email exist
+                // if ($this->userModel->getUserByEmail($data['email'])) {
+                //     $data['email_err'] = 'Email already taken';
+                // }
+    
+                if (empty($data['CIN_err']) && empty($data['name_err']) && empty($data['email_err']) &&
+                    empty($data['tele_err']) && empty($data['adresse_err'])&&empty($data['password_err']) ){
+                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                   
+
+                    $dt = $this->modelInstance->register('client',['CIN_client','nom_prenom','email','telephone','adresse','mot_de_pass'],[$data['CIN'],$data['name'],$data['email'],$data['tele'],$data['adresse'],
+                    $data['password']]);
+                    if ($dt)
+                        {
+                        $this->redirect(URLROOT.'/clients/index'); 
+                        
+                    } else {die("something went wrong!!");}
+                        
+                } else {
+                    //user register faild
+                    $this->loadView('admin'.DS.'clients'.DS.'addclient', $data);
+                }
+            }else {
+    
+                $data = [
+                    'CIN'=> '',
+                    'name' => '',
+                    'email' => '',
+                    'tele' => '',
+                    'adresse'=> '',
+                    'password' => '',
+                    'CIN_err' => '',
+                    'name_err' => '',
+                    'email_err' => '',
+                    'tele_err' => '',
+                    'adresse_err' => '',
+                    'password_err' => '',
+                ];
+    
+                //load the register
+                $this->loadView('admin'.DS.'clients'.DS.'addclient', $data);
+            }
+        }
         /**
          * Get all users from a specified table
          * 
@@ -20,12 +96,16 @@ class Clients extends Controller{
          * @return void
          * 
          */
-        public function loadUsers($table = 'student'){
+        public function loadUsers($table = 'client'){
             
-            $users = $this->modelInstance->getAllUsers($table);
-
+            $users = $this->modelInstance->getAllClient($table);
+            // print_r($users);
+            // $this->loadView('test',$users);
             // Prepare for an ajax request
-            $this->jsonPrepare($users);
+            if($users){
+
+                $this->jsonPrepare($users);
+            }
         }
 
 

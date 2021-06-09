@@ -2,7 +2,7 @@
 
 
 
-    class Client{
+    class Rendez{
 
         private $db = null;
        
