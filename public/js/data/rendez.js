@@ -7,32 +7,37 @@ const filterInput = document.querySelector('.filter-input');
 const selectOption = document.querySelector('.filter-option');
 const alert = document.querySelector('.alert-no-data');
 /**
- * Display books 
- * 
+ * Display books
+ *
  * @param {array} books
  * @returns {void}
- *  
+ *
  */
 
-function displayImmo(immos) {
+function displayRendezs(Rendezs) {
     let outputBuffer = '';
-    if (immos.length > 0) {
-        immos.forEach(immo => {
+    if (Rendezs.length > 0) {
+        Rendezs.forEach(rendez => {
             outputBuffer+=`
             <tr>
-                <td>${immo['type_immobilier']}</td>
-                <td>${immo['type_operation']}</td>
-                <td>${immo['adresse']}</td>
-                <td>${immo['prix']}DH </td>
-                <td>${immo['surface']}m</td>
-                <td><a href="http://localhost/mvcstage/immobiliers/delete/${immo['id_immobilier']}" class="btn  btn-outline-danger mr-2">Sup</a><a href="http://localhost/mvcstage/immobiliers/editImmobilier/${immo['id_immobilier']}" class="btn  btn-outline-success">Modifier</a></td>
+                <td>${rendez['id_demande']}</td>
+                <td>${rendez['type_immobilier']}</td>
+                <td>${rendez['nom_prenom']}</td>
+                <td>${rendez['date_visite']}${rendez['temps_visite']}</td>
+                <td class="d-flex justify-content-center">
+                <a href="http://localhost/mvcstage/Rendezs/deleteRendez/${rendez['id_rendezvous']}" class="btn  btn-outline-danger mr-2">Sup</a>
+                    <a class="btn btn-success" href="http://localhost/mvcstage/Rendezs/addRendez"
+                        >Valider<i class="fa fa-arrow-alt-circle-right"></i>
+                    </a>
+                </td
+
+              
             </tr>`;
         });
-    
+
     }else{
         outputBuffer+=`
         <tr>
-        <td>---------</td>
         <td>---------</td>
         <td>---------</td>
         <td>---------</td>
@@ -45,11 +50,11 @@ function displayImmo(immos) {
 
 /** Event listeners */
 // Window load
-window.onload = getData('http://localhost/mvcstage/immobiliers/getAllImmobilier',displayImmo);
+window.onload = getData('http://localhost/mvcstage/Rendezs/getAllRendez',displayRendezs);
 
 // Click event
 // document.querySelector('.search-submit').addEventListener('click',()=>{
-    
+
 //     // Get input values
 //     let filterValue = filterInput.value;
 //     let selectValue = selectOption.value;

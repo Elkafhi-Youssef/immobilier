@@ -81,7 +81,7 @@ class Immobiliers extends Controller
             for ($i = 0; $i < $countfiles; $i++) {
                 $filename[] = $_FILES['file']['name'][$i];
             }
-            print_r($filename);
+            
             $images = implode(" ", $filename);
 
             // Upload file
@@ -93,15 +93,14 @@ class Immobiliers extends Controller
             //$fire=mysqli_query($con,$query);
             // images
 
-            echo  $_POST['type_immobilier'] . $_POST['type_operation'] . $_POST['adresse'] . $_POST['descreption'] . $_POST['adresse'], $_POST['surface'] . $_POST['prix'];
+           
             if (1 == 1) {
                 $dt = $this->modelInstance->addImmobilier('immobilier', ['type_immobilier', 'type_operation', 'adresse', 'description', 'surface', 'prix', 'img'], [
                     $data['type_immobilier'], $data['type_operation'], $data['adresse'], $data['descreption'], $data['surface'],
-                    $data['prix'], $images
-                ]);
+                    $data['prix'], $images ]);
                 if ($dt) {
-                    
-                    $this->redirect(URLROOT . '/Immobiliers');
+                    $_SESSION['addImmobilier'] = 'immobilier bien ajouter';
+                    $this->loadView('admin' . DS . 'immobilier' . DS . 'immobiliers', []);
                 } else {
                     die("something went wrong!!");
                 }
@@ -156,16 +155,14 @@ class Immobiliers extends Controller
             for ($i = 0; $i < $countfiles; $i++) {
                 move_uploaded_file($_FILES['file']['tmp_name'][$i], ROOT . DS . 'public/upload/' . $filename[$i]);
             }
-            // $query="insert into test (car_name,images) values('$name',' $images')";
-            //$fire=mysqli_query($con,$query);
-            // images
+            
             if (1 == 1) {
                 $dt = $this->modelInstance->editimmobilier($data['descreption'] ,$data['adresse'],$data['type_immobilier'],$data['type_operation'],$data['prix'],$data['surface'],$images,$data['id']);
                 if ($dt) {
-                    $_SESSION['status']= 'immobilier bien modifier';
+                    $_SESSION['editImmobilier']= 'immobilier bien modifier';
                     $this->redirect(URLROOT . '/Immobiliers');
                 } else {
-                    $_SESSION['status']= 'immobilier n a pas modifier';
+                    $_SESSION['editImmobilier']= 'immobilier n a pas modifier';
                     $this->redirect(URLROOT . '/Immobiliers');
                 }
             } else {
@@ -194,6 +191,7 @@ class Immobiliers extends Controller
     public function delete($id)
     {
         $this->modelInstance->deleteimmobilier($id);
+        $_SESSION['deleteimmobilier'] = "immmobilier supremmer";
         $this->loadView('admin' . DS . 'immobilier' . DS . 'immobiliers', []);
     }
 }

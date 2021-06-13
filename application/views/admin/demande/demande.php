@@ -7,10 +7,7 @@
                 </div>
                 <div class="mb-4">
                    <div class="row-cols-2 d-flex justify-content-between mb-4" >
-                    <!-- Page Heading -->
-                   
-                    
-                   
+                    <!-- Page Heading --> 
                  </div>
               </div>
                     <!-- DataTales Example -->
@@ -47,6 +44,7 @@
                             </div>
 
                     <hr class="sidebar-divider my-0">
+                 
                         
                         <div class="card-body">
                             <div class="table-responsive">
@@ -57,7 +55,6 @@
                                             <th>Type Immobilier</th>
                                             <th>Date/Heur</th>
                                             <th>.....</th>
-
                                             <th>Décision</th>
                                             
                                         </tr>
@@ -66,9 +63,7 @@
                                     <tbody class="table_body">
                                         <!-- data will be displayed using javascript -->
                                         
-                                        <div class="alert-no-data  alert-info fade show text-center d-none" role="alert">
-                                            <strong>Vide</strong>
-                                        </div>
+                                        
                                         
                                     </tbody>
                                 </table>
@@ -76,5 +71,5 @@
                         </div>
 
             </div>
-            <script type="module" src="<?=URLROOT.'/public/js/data/books.js'?>"></script>
+            <script type="module" src="<?=URLROOT.'/public/js/data/home.js'?>"></script>
 <?php require_once VIEWS_PATH.DS.'views.inc'.DS.'footer.php';?>

@@ -13,68 +13,10 @@
             $this->loadView('admin'.DS.'demande'.DS.'demande',[]);
 
         }
-        public function addbook($params = []){
-
-            // alert for form submission
-            $alert = [
-                'err' => false,
-                'msg' => '',
-                'class-name' => ''
-            ];
-            
-            // load view 
-            //$this->loadView('books'.DS.'books_addbook',[]);
-            
-            // Check if there is submission
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // fliter data
-                $filtredPost = !is_null($_POST['isbn']) ? filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING) : [];
-                $bookInfo = [
-                    $filtredPost['isbn'],
-                    $filtredPost['title'],
-                    $filtredPost['year'],
-                    $filtredPost['author'],
-                    $filtredPost['category'],
-                    $filtredPost['nbrOfCopies']
-                ];
-               
-                // 
-                if($this->modelInstance->rowExist('book','ISBN',$bookInfo[0])){
-                    if ($this->modelInstance->addCopy([$bookInfo[5],$bookInfo[0]])) $alert['err'] = false;
-                    else $alert['err'] = true;
-                }else{
-                    
-                    if ($this->modelInstance->addBook($bookInfo)) $alert['err'] = false;
-                    else $alert['err'] = true;
-                    
-                    $this->modelInstance->addAuthor($bookInfo[3],$bookInfo[0]);
-                    $this->modelInstance->addCattegory($bookInfo[4],$bookInfo[0]);
-                }
-
-                // 
-                if ($alert['err']){
-                    $alert = [
-                        'err' => true,
-                        'msg' => 'Oops somthing went wrong!!',
-                        'class-name' => 'alert alert-danger'
-                    ];}
-                else{ 
-                    $alert = [
-                        'err' => false,
-                        'msg' => 'Operation done successfully!',
-                        'class-name' => 'alert alert-success'
-                    ];}                       
-                // Reload view with alert 
-                $this->loadView('admin'.DS.'books'.DS.'books_addbook',$alert);
-                unset($_POST);
-                unset($bookInfo);
-            }else  $this->loadView('admin'.DS.'books'.DS.'books_addbook',[]);
-        }
+       
         // function get data of visit (date ,time) 
         public function adddemande()
         {
-           
-        
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -98,13 +40,20 @@
                         $_SESSION['status'] = 'votre demande ne passe pas';
                         $this->redirect(URLROOT.'/Immobiliers/getAllImmob');
                     }
-
                 }
-
-
-
-
             }
+
+        }
+        // function use for get all demandes 
+        public function getAllDemandes()
+        {
+           $data = $this->modelInstance->getdemandes();
+        //    print_r($data);
+        //    $this->loadView('test',[]);
+           if($data){
+              $this->jsonPrepare($data);
+
+           }
         }
 
       

@@ -61,7 +61,7 @@
  
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= URLROOT.DS.'Rendez'.DS.'index' ?>">
+                <a class="nav-link" href="<?= URLROOT.DS.'Rendezs'.DS.'index' ?>">
                     <i class="fas fa-book"></i>
                     <span>Les rendez-vous</span></a>
             </li>

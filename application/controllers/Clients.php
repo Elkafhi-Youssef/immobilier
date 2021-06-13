@@ -99,9 +99,7 @@ class Clients extends Controller{
         public function loadUsers($table = 'client'){
             
             $users = $this->modelInstance->getAllClient($table);
-            // print_r($users);
-            // $this->loadView('test',$users);
-            // Prepare for an ajax request
+            
             if($users){
 
                 $this->jsonPrepare($users);
@@ -127,34 +125,8 @@ class Clients extends Controller{
             // Prepare for an ajax request
             $this->jsonPrepare($books);
         }
-        // public function userHome(){
-        //     $this->loadView('users'.DS.'home'.DS.'home_user',[]);
-            
-        // }
-
-
-
-
-        // function addComand($tablename,$attrs ,$values ) 
-        public function commandUser($id_user,$id_copy){
-            $date_comand =date('Y-m-n');
-            if($this->modelInstance->testReg($id_user) == 'std'){
-            $add = $this->modelInstance->addComand('std_order',[`order_date`, `date_prise`, `student_id`, `copy_id`],[$date_comand,0000-00-00,'k130016842','1']);
-            }elseif($this->modelInstance->testReg($id_user) == 2){
-                $add = $this->modelInstance->addComand('tea_order',[`order_date`, `date_prise`, `teacher_id`, `copy_id`],[$date_comand,0000-00-00,'Y.Elkafhi','1']); 
-            }elseif($this->modelInstance->testReg($id_user) == 3){
-                $add = $this->modelInstance->addComand('emp_order',[`order_date`, `date_prise`, `emp_id`, `copy_id`],[$date_comand,0000-00-00,'servece.you','1']);
-            }
-
-            if($add){
-                echo "succes";
-            }
-            else{
-                echo "failed";
-            }
-        }
         
-        
+        //   function for login 
  
         public function login(){
            

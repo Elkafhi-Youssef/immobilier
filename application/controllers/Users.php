@@ -15,11 +15,7 @@
 
         }
 
-        public function singin()
-        {
-            $this->loadView('users'.DS.'singin.user');
-
-        }
+      
 
         public function register()
         {

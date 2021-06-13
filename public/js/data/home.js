@@ -17,28 +17,43 @@ const selectOption = document.querySelector('.filter-option');
  * 
  * Display books to give (ordred books)
  * @param {array} data books to be displayed
- * @return {void}
+ * @return {void} 
  * 
  */
-function toGive(data) {
-  title.innerHTML = "Liste de demande";  
-  data.forEach((elm) => {
-    output += `
-            <tr>
-                <td>${elm["id"]}</td>
-                <td>${elm["title"]}</td>
-                <td>${elm["fullname"]}</td>
-                <td>${elm["lname"]} ${elm["fname"]}</td>
-                <td>${elm["date"]}</td>
-                <td class="d-flex justify-content-center">
-                    <a class="btn btn-success" href="#"
-                        >Valider <i class="fa fa-arrow-alt-circle-right"></i>
+ function getAllDemandes(Demandes) {
+  let outputBuffer = '';
+  if (Demandes.length > 0) {
+    Demandes.forEach(Demande => {
+          outputBuffer+=`
+          <tr>
+              <td>${Demande['nom_prenom']} </td>
+              <td>${Demande['type_immobilier']}
+                    <a class="btn-outline-success" href="http://localhost/mvcstage/Rendezs/addRendez/${Demande['id_demande']}"
+                        >${Demande['id_immobilier']}<i class="fa fa-arrow-alt-circle-right"></i>
                     </a>
                 </td>
-            </tr>
-        `;
-  });
-  tableBody.innerHTML = output;
+              <td>${Demande['date_visite']} ${Demande['temps_visite']}</td>
+              <td>........</td>
+              <td class="d-flex justify-content-center">
+                    <a class=" btn btn-success"  href="http://localhost/mvcstage/Rendezs/addRendez/${Demande['id_demande']}"
+                        >Valider<i class="fa fa-arrow-alt-circle-right"></i>
+                    </a>
+                </td> 
+          </tr>`;
+      });
+
+  }else{
+      outputBuffer+=`
+      <tr>
+      <td>---------</td>
+      <td>---------</td>
+      <td>---------</td>
+      <td>---------</td>
+      <td>---------</td>
+      <td>---------</td>
+      </tr>`;
+  }
+  tableBody.innerHTML = outputBuffer;
 }
 
 /**
@@ -48,76 +63,7 @@ function toGive(data) {
  * 
  */
 
-function toGiveBack(data) {
-  title.innerHTML = "A rendre";  
-  let output = `
-      <thead>
-        <tr>
-            <th>Id</th>
-            <th>Titre</th>
-            <th>Id D'emprunteur</th>
-            <th>Nom et prénom</th>
-            <th>Date de reteur</th>
-            <th>Duree</th>
-            <th  class="d-flex justify-content-center">Decesion</th>
-        </tr>
-      </thead>
-    `;
 
-  data.forEach((elm) => {
-    output += `
-            <tr>
-                <td>${elm["id"]}</td>
-                <td>${elm["title"]}</td>
-                <td>${elm["user_id"]}</td>
-                <td>${elm["user_name"]}</td>
-                <td>${elm["termination_date"]}</td>
-                <td>${elm["left_time"]}</td>
-                <td class="d-flex justify-content-center"><a class="btn btn-success" href="#"><i class="fa fa-arrow-circle-left"></i> Valider</a></td>
-            </tr>
-        `;
-  });
-  tableBody.innerHTML = output;
-}
-
-/**
- * 
- * Display books should be given back and late
- * @param {array} data 
- * 
- */
-
-function booksLate(data) {
-  title.innerHTML = "En retard";  
-  let output = `
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>Titre</th>
-              <th>Id D'emprunteur</th>
-              <th>Nom et prénom</th>
-              <th>Date de reteur</th>
-              <th>Duree</th>
-              <th  class="d-flex justify-content-center">Decesion</th>
-          </tr>
-      </thead>
-    `;
-
-  data.forEach((elm) => {
-    output += `
-            <tr>
-                <td>${elm["id"]}</td>
-                <td>${elm["title"]}</td>
-                <td>${elm["user_id"]}</td>
-                <td>${elm["user_name"]}</td>
-                <td>${elm["termination_date"]}</td>
-                <td>${elm["duration_late"]}</td>
-                <td class="d-flex justify-content-center"><a class="btn" href="#"><i class="fa fa-envelope mx-2"></i></a>  <a href="#" class="btn"> <i class="fa fa-phone-alt mx-2"></i></a></td>           
-            </tr>
-        `;
-  });
-  tableBody.innerHTML = output;
-}
 
 /**
  *
@@ -125,7 +71,7 @@ function booksLate(data) {
  *
  */
 
-window.onload = getData("http://127.0.0.1/gbests/books/togive", toGive);
+window.onload = getData("http://127.0.0.1/mvcstage/Demandes/getAllDemandes", getAllDemandes);
 
 
 

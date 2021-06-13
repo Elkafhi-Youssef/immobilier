@@ -2,11 +2,24 @@
 <?php require_once VIEWS_PATH . DS . 'views.inc' . DS . 'nav.php'; ?>
 <!-- Begin Page Content -->
 <div class="container">
-<?php if (isset($_SESSION['status'])) { ?>
+
+<?php if (isset($_SESSION['addImmobilier'])) { ?>
         <div class=" alert alert-success" role="alert">
-            <?php echo $_SESSION['status'];  ?>
+            <?php echo $_SESSION['addImmobilier'];  ?>
         </div>
-        <?php unset($_SESSION['status']); ?>
+        <?php unset($_SESSION['addImmobilier']); ?>
+    <?php  } ?>
+    <?php if (isset($_SESSION['editImmobilier'])) { ?>
+        <div class=" alert alert-success" role="alert">
+            <?php echo $_SESSION['editImmobilier'];  ?>
+        </div>
+        <?php unset($_SESSION['editImmobilier']); ?>
+    <?php  } ?>
+    <?php if (isset($_SESSION['deleteimmobilier'])) { ?>
+        <div class=" alert alert-success" role="alert">
+            <?php echo $_SESSION['deleteimmobilier'];  ?>
+        </div>
+        <?php unset($_SESSION['deleteimmobilier']); ?>
     <?php  } ?>
     <!-- DataTales Example -->
     <div class="row-cols-2 d-flex justify-content-between mb-2">
@@ -73,6 +86,7 @@
 
     </div>
 </div>
+
 <!-- End of Main Content -->
 <script type="module" src="<?= URLROOT . '/public/js/data/immobiliers.js' ?>"></script>
 
